@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaMind - AMP-041 Candidate Detail</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config defined by Design System -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d3e4ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#00725b",
+                        "outline-variant": "#c0c7d4",
+                        "on-tertiary-fixed-variant": "#00513f",
+                        "on-secondary-fixed": "#002018",
+                        "tertiary-container": "#008468",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#404752",
+                        "primary-fixed-dim": "#a2c9ff",
+                        "on-secondary-fixed-variant": "#005140",
+                        "primary": "#005ea5",
+                        "surface-tint": "#0060a9",
+                        "secondary-container": "#6dfad2",
+                        "inverse-on-surface": "#ebf2f4",
+                        "on-tertiary-fixed": "#002118",
+                        "tertiary-fixed": "#63fbcf",
+                        "on-tertiary-container": "#f5fff9",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f4fafd",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#006b55",
+                        "surface-container-high": "#e2e9ec",
+                        "surface-container-low": "#eef5f7",
+                        "surface-container-highest": "#dde4e6",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#6dfad2",
+                        "primary-container": "#0077ce",
+                        "surface-container": "#e8eff1",
+                        "on-primary-container": "#fdfcff",
+                        "outline": "#707784",
+                        "surface-dim": "#d4dbdd",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#3fdeb4",
+                        "inverse-surface": "#2b3234",
+                        "on-surface": "#161d1f",
+                        "on-primary-fixed-variant": "#004881",
+                        "inverse-primary": "#a2c9ff",
+                        "secondary-fixed-dim": "#4bddb7",
+                        "surface-bright": "#f4fafd",
+                        "surface": "#f4fafd",
+                        "on-primary-fixed": "#001c38",
+                        "error": "#ba1a1a",
+                        "on-background": "#161d1f",
+                        "on-error": "#ffffff",
+                        "tertiary": "#006952",
+                        "surface-variant": "#dde4e6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xs": "4px",
+                        "edge-margin": "24px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "code-md": ["IBM Plex Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "code-md": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for high-density tables/sequences */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F4FAFD; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #C0C7D4; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #707784; 
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased font-body-md text-body-md overflow-hidden h-screen flex">
+<!-- NavigationDrawer Shell (from JSON) -->
+<nav class="w-64 h-full border-r border-outline-variant dark:border-outline bg-surface dark:bg-surface-dim fixed left-0 top-0 h-screen flex flex-col justify-between py-md z-50">
+<div>
+<!-- Brand -->
+<div class="px-lg pb-md mb-md border-b border-outline-variant dark:border-outline">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">PharmaMind</span>
+</div>
+<!-- Navigation Items -->
+<ul class="flex flex-col space-y-xs px-sm">
+<!-- Inactive Nav Item -->
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:bg-primary-container/20 font-label-bold text-label-bold" href="#">
+<span class="material-symbols-outlined mr-sm" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                        Overview
+                    </a>
+</li>
+<!-- Active Nav Item: Candidate Explorer context for a detail page -->
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-primary dark:text-primary-fixed border-l-4 border-primary dark:border-primary-fixed bg-surface-container-high dark:bg-surface-container-highest cursor-pointer active:bg-primary-container/20 transition-colors duration-200 font-label-bold text-label-bold" href="#">
+<span class="material-symbols-outlined mr-sm" style="font-variation-settings: 'FILL' 1;">search_check</span>
+                        Candidate Explorer
+                    </a>
+</li>
+<!-- Inactive Nav Items -->
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:bg-primary-container/20 font-label-bold text-label-bold" href="#">
+<span class="material-symbols-outlined mr-sm" style="font-variation-settings: 'FILL' 0;">star</span>
+                        Shortlist
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:bg-primary-container/20 font-label-bold text-label-bold" href="#">
+<span class="material-symbols-outlined mr-sm" style="font-variation-settings: 'FILL' 0;">compare_arrows</span>
+                        Compare
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:bg-primary-container/20 font-label-bold text-label-bold" href="#">
+<span class="material-symbols-outlined mr-sm" style="font-variation-settings: 'FILL' 0;">biotech</span>
+                        What-if Lab
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:bg-primary-container/20 font-label-bold text-label-bold" href="#">
+<span class="material-symbols-outlined mr-sm" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+                        Evidence
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 cursor-pointer active:bg-primary-container/20 font-label-bold text-label-bold" href="#">
+<span class="material-symbols-outlined mr-sm" style="font-variation-settings: 'FILL' 0;">verified</span>
+                        Model &amp; Validation
+                    </a>
+</li>
+</ul>
+</div>
+<!-- Bottom area of drawer (optional, left empty for now) -->
+<div class="px-md">
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="ml-64 flex-1 flex flex-col h-screen overflow-hidden">
+<!-- TopAppBar (from JSON) -->
+<header class="bg-white dark:bg-surface-container-lowest w-full h-14 border-b border-outline-variant dark:border-outline fixed top-0 right-0 left-64 z-40 flex items-center justify-between px-lg">
+<div class="flex items-center text-primary dark:text-primary-fixed font-headline-sm text-headline-sm">
+<a class="mr-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer active:opacity-80 flex items-center" href="#" title="Back to Candidate Explorer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</a>
+<span class="material-symbols-outlined mr-sm" style="font-variation-settings: 'FILL' 1;">microbiology</span>
+                AMP-041
+            </div>
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-md py-xs rounded border border-transparent hover:bg-surface-tint transition-colors flex items-center">
+                Export
+                <span class="material-symbols-outlined ml-xs text-[16px]" style="font-variation-settings: 'FILL' 0;">download</span>
+</button>
+</header>
+<!-- Scrollable Stage Container -->
+<main class="mt-14 p-lg overflow-y-auto h-[calc(100vh-3.5rem)] custom-scrollbar bg-surface-container-lowest">
+<div class="max-w-[1200px] mx-auto grid grid-cols-12 gap-gutter">
+<!-- Hero Section: Identity & Sequence (Spans full width) -->
+<div class="col-span-12 mb-sm flex flex-col">
+<div class="flex items-center justify-between mb-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Candidate: AMP-041</h1>
+<div class="flex gap-sm">
+<span class="bg-[#F1F3F5] px-sm py-xs rounded text-body-sm border border-outline-variant">Length: 15 aa</span>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded text-body-sm font-label-bold">Net charge: +6</span>
+<span class="bg-[#F1F3F5] px-sm py-xs rounded text-body-sm border border-outline-variant">Hydrophobic fraction: 0.47</span>
+</div>
+</div>
+<div class="bg-surface p-sm border border-outline-variant rounded overflow-x-auto custom-scrollbar">
+<div class="font-code-md text-code-md text-primary tracking-widest whitespace-nowrap">KWKLFKKIGAVLKVL</div>
+</div>
+</div>
+<!-- Left Column: Predictions & Explanations (Span 7) -->
+<div class="col-span-12 lg:col-span-7 flex flex-col gap-gutter">
+<!-- Prediction Panel (Bento Card 1) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-md flex flex-col">
+<h2 class="font-headline-sm text-headline-sm mb-md flex items-center border-b border-outline-variant pb-xs">
+<span class="material-symbols-outlined mr-sm text-primary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                            Prediction Models
+                        </h2>
+<div class="flex flex-col gap-md">
+<!-- Predicted Activity -->
+<div>
+<div class="flex justify-between mb-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant">Predicted Activity (P_active)</span>
+<span class="font-body-md text-body-md font-semibold text-secondary">92%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded overflow-hidden flex">
+<div class="bg-secondary h-full" style="width: 92%"></div>
+</div>
+</div>
+<!-- Predicted Toxicity -->
+<div>
+<div class="flex justify-between mb-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant">Predicted Toxicity (P_toxic)</span>
+<span class="font-body-md text-body-md font-semibold text-error">8%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded overflow-hidden flex">
+<div class="bg-error h-full" style="width: 8%"></div>
+</div>
+</div>
+<!-- Combined Score -->
+<div class="mt-sm pt-sm border-t border-outline-variant">
+<div class="flex justify-between items-end mb-xs">
+<div>
+<span class="font-label-bold text-label-bold text-primary block">Combined Quality Score</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant italic">Combined quality = P(active) × (1 − P(toxic))</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary font-bold">0.846</span>
+</div>
+<div class="w-full bg-surface-container-high h-3 rounded overflow-hidden flex">
+<div class="bg-primary h-full" style="width: 84.6%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Explainability Panel (Bento Card 2) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-md flex flex-col">
+<h2 class="font-headline-sm text-headline-sm mb-md flex items-center border-b border-outline-variant pb-xs">
+<span class="material-symbols-outlined mr-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+                            Why AMP-041 was selected
+                        </h2>
+<div class="space-y-sm text-on-surface-variant font-body-md text-body-md">
+<p><strong>Activity rationale:</strong> The high density of Lysine (K) residues provides strong initial electrostatic attraction to negatively charged bacterial membranes, driving the 92% predicted activity.</p>
+<p><strong>Toxicity rationale:</strong> The relatively low hydrophobic moment and absence of highly toxic motifs (like extended tryptophan stretches) keeps predicted mammalian cell disruption to a minimum (8%).</p>
+<p><strong>Diversity contribution:</strong> AMP-041 introduces a novel K-W-K structural motif that is underrepresented in the current training set, offering a divergent structural archetype to the candidate pool.</p>
+</div>
+<div class="mt-md pt-sm border-t border-outline-variant grid grid-cols-3 gap-sm">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Quality Contribution</span>
+<span class="font-label-bold text-label-bold text-on-surface">+0.12 ∆Q</span>
+</div>
+<div class="flex flex-col border-l border-outline-variant pl-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Diversity Contribution</span>
+<span class="font-label-bold text-label-bold text-on-surface">+0.08 ∆D</span>
+</div>
+<div class="flex flex-col border-l border-outline-variant pl-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Selection Gain</span>
+<span class="font-label-bold text-label-bold text-secondary">+0.20 Total</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Visuals & Properties (Span 5) -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-gutter">
+<!-- Helical Wheel Visualization (Bento Card 3) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-md flex flex-col items-center justify-center min-h-[300px]">
+<h2 class="font-headline-sm text-headline-sm mb-md flex items-center w-full border-b border-outline-variant pb-xs">
+<span class="material-symbols-outlined mr-sm text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">data_exploration</span>
+                            Helical Wheel
+                        </h2>
+<!-- Using a placeholder for the scientific visualization as requested -->
+<div class="bg-contain bg-center bg-no-repeat w-full h-64 border border-outline-variant bg-surface" data-alt="A clean, professional 2D scientific diagram showing a Helical Wheel projection of a peptide sequence. The design is laboratory white with structural alignments, using muted colors to distinguish hydrophobic (light grey/blue) from charged residues (muted red/green). The aesthetic is purely analytical, corporate pharma, and highly technical. High-contrast clinical data visualization." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2HJOweFdLptKA5LccD9HObSJ0KLhT9RrEg7ftm8jA-UQQzFSKuSrelpMOTttknjIXomB4O7dZcse7g1kzehwuUaqxvYwGrGyFbZr9Ll8e9thRF6nov34-02kBazYqeSh7ZF_wEdvWdO-4Rg5hSs3xLsk1yusPn9XemjuF39mNUc-hk-mDGlLI5l605xH6mUE31DitLz6DU7oQ2g_E0juwN0CmNmpFhOkXli4_au0T2fapQr1j1Efu')"></div>
+<div class="mt-sm flex gap-md w-full justify-center">
+<div class="flex items-center"><span class="w-2 h-2 rounded-full bg-primary mr-xs block"></span><span class="font-body-sm text-body-sm">Hydrophobic</span></div>
+<div class="flex items-center"><span class="w-2 h-2 rounded-full bg-secondary mr-xs block"></span><span class="font-body-sm text-body-sm">Cationic</span></div>
+</div>
+</div>
+<!-- Physico-chemical Properties Table (Bento Card 4) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-md flex flex-col">
+<h2 class="font-headline-sm text-headline-sm mb-md flex items-center border-b border-outline-variant pb-xs">
+<span class="material-symbols-outlined mr-sm text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">science</span>
+                            Physico-chemical Properties
+                        </h2>
+<div class="flex flex-col border border-outline-variant rounded">
+<div class="flex justify-between p-xs bg-surface border-b border-outline-variant">
+<span class="font-body-md text-body-md text-on-surface-variant">Length</span>
+<span class="font-code-md text-code-md">15</span>
+</div>
+<div class="flex justify-between p-xs bg-white border-b border-outline-variant">
+<span class="font-body-md text-body-md text-on-surface-variant">Net Charge</span>
+<span class="font-code-md text-code-md">+6</span>
+</div>
+<div class="flex justify-between p-xs bg-surface border-b border-outline-variant">
+<span class="font-body-md text-body-md text-on-surface-variant">Hydrophobic Fraction</span>
+<span class="font-code-md text-code-md">0.47</span>
+</div>
+<div class="flex justify-between p-xs bg-white border-b border-outline-variant">
+<span class="font-body-md text-body-md text-on-surface-variant">Molecular Weight</span>
+<span class="font-code-md text-code-md">1784.3 Da</span>
+</div>
+<div class="flex justify-between p-xs bg-surface">
+<span class="font-body-md text-body-md text-on-surface-variant">Residue Composition</span>
+<span class="font-code-md text-code-md text-right text-xs">K(5) L(3) V(2)<br/>F(2) I(1) G(1) A(1)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

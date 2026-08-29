@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaMind - Experimental Shortlist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d3e4ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#00725b",
+                        "outline-variant": "#c0c7d4",
+                        "on-tertiary-fixed-variant": "#00513f",
+                        "on-secondary-fixed": "#002018",
+                        "tertiary-container": "#008468",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#404752",
+                        "primary-fixed-dim": "#a2c9ff",
+                        "on-secondary-fixed-variant": "#005140",
+                        "primary": "#005ea5",
+                        "surface-tint": "#0060a9",
+                        "secondary-container": "#6dfad2",
+                        "inverse-on-surface": "#ebf2f4",
+                        "on-tertiary-fixed": "#002118",
+                        "tertiary-fixed": "#63fbcf",
+                        "on-tertiary-container": "#f5fff9",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f4fafd",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#006b55",
+                        "surface-container-high": "#e2e9ec",
+                        "surface-container-low": "#eef5f7",
+                        "surface-container-highest": "#dde4e6",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#6dfad2",
+                        "primary-container": "#0077ce",
+                        "surface-container": "#e8eff1",
+                        "on-primary-container": "#fdfcff",
+                        "outline": "#707784",
+                        "surface-dim": "#d4dbdd",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#3fdeb4",
+                        "inverse-surface": "#2b3234",
+                        "on-surface": "#161d1f",
+                        "on-primary-fixed-variant": "#004881",
+                        "inverse-primary": "#a2c9ff",
+                        "secondary-fixed-dim": "#4bddb7",
+                        "surface-bright": "#f4fafd",
+                        "surface": "#f4fafd",
+                        "on-primary-fixed": "#001c38",
+                        "error": "#ba1a1a",
+                        "on-background": "#161d1f",
+                        "on-error": "#ffffff",
+                        "tertiary": "#006952",
+                        "surface-variant": "#dde4e6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xs": "4px",
+                        "edge-margin": "24px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "code-md": ["IBM Plex Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "code-md": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F8F9FA; }
+        .data-table-container { border: 1px solid #E1E4E8; background-color: #FFFFFF; }
+        .data-table th { border-bottom: 1px solid #E1E4E8; text-align: left; padding: 12px 16px; }
+        .data-table td { padding: 12px 16px; border-bottom: 1px solid #f1f3f5; }
+        .data-table tr:nth-child(even) { background-color: #F8F9FA; }
+        .input-clinical { border: 1px solid #E1E4E8; }
+        .input-clinical:focus { border-color: #0984E3; outline: none; box-shadow: 0 0 0 2px rgba(9, 132, 227, 0.2); }
+        .chip-default { background-color: #F1F3F5; color: #404752; }
+        .chip-success { background-color: #e6f4ea; color: #137333; }
+        .chip-warning { background-color: #fef7e0; color: #b06000; }
+        .chip-danger { background-color: #fce8e6; color: #c5221f; }
+        .pill-status { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .pill-success { background-color: #137333; }
+        .pill-warning { background-color: #f29900; }
+        .code-container { font-family: 'IBM Plex Mono', monospace; overflow-x: auto; white-space: nowrap; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased font-body-md h-screen overflow-hidden flex">
+<!-- NavigationDrawer -->
+<nav class="fixed left-0 top-0 h-screen flex flex-col justify-between py-md w-64 border-r border-outline-variant bg-surface z-50 transition-transform duration-300 transform md:translate-x-0 -translate-x-full" id="side-nav">
+<div>
+<div class="px-md mb-xl flex items-center justify-between">
+<span class="font-headline-md text-headline-md font-bold text-primary">PharmaMind</span>
+</div>
+<ul class="flex flex-col space-y-2">
+<li class="px-md">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-bold text-label-bold">Overview</span>
+</a>
+</li>
+<li class="px-md">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">search_check</span>
+<span class="font-label-bold text-label-bold">Candidate Explorer</span>
+</a>
+</li>
+<li class="px-md">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-DEFAULT text-primary border-l-4 border-primary bg-surface-container-high cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-bold text-label-bold">Shortlist</span>
+</a>
+</li>
+<li class="px-md">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">compare_arrows</span>
+<span class="font-label-bold text-label-bold">Compare</span>
+</a>
+</li>
+<li class="px-md">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">biotech</span>
+<span class="font-label-bold text-label-bold">What-if Lab</span>
+</a>
+</li>
+<li class="px-md">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+<span class="font-label-bold text-label-bold">Evidence</span>
+</a>
+</li>
+<li class="px-md">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">verified</span>
+<span class="font-label-bold text-label-bold">Model &amp; Validation</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-0 md:left-64 z-40 flex items-center justify-between px-lg w-full md:w-[calc(100%-16rem)] h-14 border-b border-outline-variant bg-surface-container-lowest">
+<div class="flex items-center space-x-4">
+<button class="md:hidden text-on-surface-variant hover:text-primary cursor-pointer active:opacity-80" id="menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center text-primary cursor-pointer active:opacity-80 transition-colors">
+<span class="material-symbols-outlined mr-2">star</span>
+<span class="font-headline-sm text-headline-sm">Shortlist</span>
+</div>
+</div>
+<div>
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-DEFAULT font-label-bold text-label-bold hover:bg-primary-container transition-colors flex items-center space-x-2">
+<span>Export</span>
+<span class="material-symbols-outlined" style="font-size: 16px;">download</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 mt-14 ml-0 md:ml-64 p-lg overflow-y-auto h-[calc(100vh-3.5rem)] bg-[#F8F9FA]">
+<!-- Header Section -->
+<div class="mb-xl flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Experimental Shortlist</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">20 candidates selected from 1,247 analysed peptides.</p>
+</div>
+<div class="bg-white p-4 rounded-DEFAULT border border-outline-variant flex items-center space-x-4">
+<label class="font-label-bold text-label-bold text-on-surface-variant" for="budget-slider">Testing Budget</label>
+<div class="flex items-center space-x-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant w-4">10</span>
+<input class="w-32 h-1 bg-surface-variant rounded-full appearance-none cursor-pointer accent-primary" id="budget-slider" max="40" min="10" step="10" type="range" value="20"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant w-4">40</span>
+</div>
+<div class="font-code-md text-code-md bg-surface-container px-2 py-1 border border-outline-variant rounded-DEFAULT w-12 text-center" id="budget-value">20</div>
+</div>
+</div>
+<!-- Analytics Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-xl">
+<!-- Strategy Comparison Card -->
+<div class="col-span-1 lg:col-span-3 bg-white p-lg rounded-DEFAULT border border-outline-variant flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-md">Selection Strategy Comparison</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
+<!-- Metric 1 -->
+<div class="flex flex-col">
+<span class="font-label-bold text-label-bold text-on-surface-variant mb-2">Avg. Pairwise Similarity</span>
+<div class="flex items-end space-x-4 mb-2">
+<div>
+<span class="font-headline-md text-headline-md text-primary">0.42</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">PharmaMind Diversity</span>
+</div>
+<div class="opacity-50 border-l border-outline-variant pl-4">
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">0.87</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Traditional Top-N</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary">Lower similarity indicates a broader search space, reducing total failure risk.</p>
+</div>
+<!-- Metric 2 -->
+<div class="flex flex-col border-t md:border-t-0 md:border-l border-outline-variant pt-4 md:pt-0 md:pl-6">
+<span class="font-label-bold text-label-bold text-on-surface-variant mb-2">Predicted Safe-Active Candidates</span>
+<div class="flex items-end space-x-4 mb-2">
+<div>
+<span class="font-headline-md text-headline-md text-primary">18</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">PharmaMind Diversity</span>
+</div>
+<div class="opacity-50 border-l border-outline-variant pl-4">
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">19</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Traditional Top-N</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Slightly fewer total predicted hits, but with significantly higher structural variance.</p>
+</div>
+<!-- Metric 3 -->
+<div class="flex flex-col border-t md:border-t-0 md:border-l border-outline-variant pt-4 md:pt-0 md:pl-6">
+<span class="font-label-bold text-label-bold text-on-surface-variant mb-2">Sequence-Space Coverage</span>
+<div class="flex items-end space-x-4 mb-2">
+<div>
+<span class="font-headline-md text-headline-md text-primary">85%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">PharmaMind Diversity</span>
+</div>
+<div class="opacity-50 border-l border-outline-variant pl-4">
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">22%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Traditional Top-N</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary">Maximizes exploration of the defined structural landscape.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="data-table-container rounded-DEFAULT w-full overflow-x-auto">
+<div class="p-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Selected Candidates</h3>
+<div class="flex space-x-2">
+<span class="px-2 py-1 rounded-DEFAULT text-xs font-semibold bg-[#e6f4ea] text-[#137333] border border-[#137333]/20 flex items-center"><span class="pill-status pill-success mr-1"></span> Primary Selection</span>
+<span class="px-2 py-1 rounded-DEFAULT text-xs font-semibold bg-[#f4fafd] text-primary border border-primary/20 flex items-center"><span class="pill-status bg-primary mr-1"></span> Diversity Pick</span>
+</div>
+</div>
+<table class="data-table w-full text-left border-collapse whitespace-nowrap">
+<thead>
+<tr class="bg-surface">
+<th class="font-label-bold text-label-bold text-on-surface-variant w-16">Rank</th>
+<th class="font-label-bold text-label-bold text-on-surface-variant">Candidate Sequence</th>
+<th class="font-label-bold text-label-bold text-on-surface-variant text-right">Pred. Activity</th>
+<th class="font-label-bold text-label-bold text-on-surface-variant text-right">Toxicity Risk</th>
+<th class="font-label-bold text-label-bold text-on-surface-variant text-right">Dev. Quality</th>
+<th class="font-label-bold text-label-bold text-on-surface-variant text-center">Logic</th>
+<th class="font-label-bold text-label-bold text-on-surface-variant">Evidence Level</th>
+<th class="font-label-bold text-label-bold text-on-surface-variant text-center">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<!-- Row 1 (Top Rank) -->
+<tr>
+<td class="text-on-surface-variant">1</td>
+<td>
+<div class="code-container font-code-md text-code-md">GIGKFLHSAKKFGKAFVGEIMNS</div>
+</td>
+<td class="text-right font-code-md text-code-md text-tertiary">0.94</td>
+<td class="text-right font-code-md text-code-md">0.12</td>
+<td class="text-right font-code-md text-code-md">0.88</td>
+<td class="text-center">
+<span class="px-2 py-1 rounded-DEFAULT text-[10px] uppercase font-bold tracking-wider bg-[#e6f4ea] text-[#137333]">Top Score</span>
+</td>
+<td>High (In-vivo lit.)</td>
+<td class="text-center"><span class="material-symbols-outlined text-tertiary" style="font-size: 18px;">check_circle</span></td>
+</tr>
+<!-- Row 2 (Top Rank) -->
+<tr>
+<td class="text-on-surface-variant">2</td>
+<td>
+<div class="code-container font-code-md text-code-md">GIGKFLHSAKKFGKAFVGEIMNS-V2</div>
+</td>
+<td class="text-right font-code-md text-code-md text-tertiary">0.92</td>
+<td class="text-right font-code-md text-code-md">0.15</td>
+<td class="text-right font-code-md text-code-md">0.85</td>
+<td class="text-center">
+<span class="px-2 py-1 rounded-DEFAULT text-[10px] uppercase font-bold tracking-wider bg-[#e6f4ea] text-[#137333]">Top Score</span>
+</td>
+<td>Moderate</td>
+<td class="text-center"><span class="material-symbols-outlined text-tertiary" style="font-size: 18px;">check_circle</span></td>
+</tr>
+<!-- Row 3 (Diversity Pick) -->
+<tr class="bg-primary/5">
+<td class="text-on-surface-variant">14</td>
+<td>
+<div class="code-container font-code-md text-code-md">KWKLFKKIGIGKFLHSAKKF</div>
+</td>
+<td class="text-right font-code-md text-code-md">0.81</td>
+<td class="text-right font-code-md text-code-md text-error">0.42</td>
+<td class="text-right font-code-md text-code-md">0.76</td>
+<td class="text-center">
+<span class="px-2 py-1 rounded-DEFAULT text-[10px] uppercase font-bold tracking-wider bg-[#f4fafd] text-primary border border-primary/20">Diversity</span>
+</td>
+<td>Low (Novel)</td>
+<td class="text-center"><span class="material-symbols-outlined text-tertiary" style="font-size: 18px;">check_circle</span></td>
+</tr>
+<!-- Row 4 (Top Rank) -->
+<tr>
+<td class="text-on-surface-variant">3</td>
+<td>
+<div class="code-container font-code-md text-code-md">FLGGLIKIVPAMICAVTKKC</div>
+</td>
+<td class="text-right font-code-md text-code-md text-tertiary">0.90</td>
+<td class="text-right font-code-md text-code-md">0.22</td>
+<td class="text-right font-code-md text-code-md">0.81</td>
+<td class="text-center">
+<span class="px-2 py-1 rounded-DEFAULT text-[10px] uppercase font-bold tracking-wider bg-[#e6f4ea] text-[#137333]">Top Score</span>
+</td>
+<td>Moderate</td>
+<td class="text-center"><span class="material-symbols-outlined text-tertiary" style="font-size: 18px;">check_circle</span></td>
+</tr>
+<!-- Row 5 (Diversity Pick) -->
+<tr class="bg-primary/5">
+<td class="text-on-surface-variant">42</td>
+<td>
+<div class="code-container font-code-md text-code-md">RGGRLCYCRRRFCVCVGRG</div>
+</td>
+<td class="text-right font-code-md text-code-md">0.72</td>
+<td class="text-right font-code-md text-code-md">0.18</td>
+<td class="text-right font-code-md text-code-md">0.91</td>
+<td class="text-center">
+<span class="px-2 py-1 rounded-DEFAULT text-[10px] uppercase font-bold tracking-wider bg-[#f4fafd] text-primary border border-primary/20">Diversity</span>
+</td>
+<td>High (In-vitro)</td>
+<td class="text-center"><span class="material-symbols-outlined text-tertiary" style="font-size: 18px;">check_circle</span></td>
+</tr>
+</tbody>
+</table>
+<div class="p-4 border-t border-outline-variant bg-surface flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Showing 5 of 20 selected candidates</span>
+<div class="flex space-x-1">
+<button class="px-3 py-1 border border-outline-variant bg-white text-on-surface-variant rounded-DEFAULT text-sm hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">&lt;</button>
+<button class="px-3 py-1 border border-primary bg-primary/10 text-primary rounded-DEFAULT text-sm">1</button>
+<button class="px-3 py-1 border border-outline-variant bg-white text-on-surface-variant rounded-DEFAULT text-sm hover:bg-surface-container transition-colors">2</button>
+<button class="px-3 py-1 border border-outline-variant bg-white text-on-surface-variant rounded-DEFAULT text-sm hover:bg-surface-container transition-colors">3</button>
+<button class="px-3 py-1 border border-outline-variant bg-white text-on-surface-variant rounded-DEFAULT text-sm hover:bg-surface-container transition-colors">4</button>
+<button class="px-3 py-1 border border-outline-variant bg-white text-on-surface-variant rounded-DEFAULT text-sm hover:bg-surface-container transition-colors">&gt;</button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple slider update logic
+        const slider = document.getElementById('budget-slider');
+        const display = document.getElementById('budget-value');
+        
+        if(slider && display) {
+            slider.addEventListener('input', function() {
+                display.textContent = this.value;
+                // In a real app, this would trigger an update to the table data
+            });
+        }
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const sideNav = document.getElementById('side-nav');
+        
+        if(menuToggle && sideNav) {
+            menuToggle.addEventListener('click', () => {
+                sideNav.classList.toggle('-translate-x-full');
+            });
+        }
+    </script>
+</body></html>

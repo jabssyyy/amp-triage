@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Compare Candidates - PharmaMind</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#d3e4ff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#00725b",
+                    "outline-variant": "#c0c7d4",
+                    "on-tertiary-fixed-variant": "#00513f",
+                    "on-secondary-fixed": "#002018",
+                    "tertiary-container": "#008468",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#404752",
+                    "primary-fixed-dim": "#a2c9ff",
+                    "on-secondary-fixed-variant": "#005140",
+                    "primary": "#005ea5",
+                    "surface-tint": "#0060a9",
+                    "secondary-container": "#6dfad2",
+                    "inverse-on-surface": "#ebf2f4",
+                    "on-tertiary-fixed": "#002118",
+                    "tertiary-fixed": "#63fbcf",
+                    "on-tertiary-container": "#f5fff9",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#f4fafd",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#006b55",
+                    "surface-container-high": "#e2e9ec",
+                    "surface-container-low": "#eef5f7",
+                    "surface-container-highest": "#dde4e6",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#6dfad2",
+                    "primary-container": "#0077ce",
+                    "surface-container": "#e8eff1",
+                    "on-primary-container": "#fdfcff",
+                    "outline": "#707784",
+                    "surface-dim": "#d4dbdd",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#3fdeb4",
+                    "inverse-surface": "#2b3234",
+                    "on-surface": "#161d1f",
+                    "on-primary-fixed-variant": "#004881",
+                    "inverse-primary": "#a2c9ff",
+                    "secondary-fixed-dim": "#4bddb7",
+                    "surface-bright": "#f4fafd",
+                    "surface": "#f4fafd",
+                    "on-primary-fixed": "#001c38",
+                    "error": "#ba1a1a",
+                    "on-background": "#161d1f",
+                    "on-error": "#ffffff",
+                    "tertiary": "#006952",
+                    "surface-variant": "#dde4e6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xs": "4px",
+                    "edge-margin": "24px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "base": "4px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "code-md": ["IBM Plex Mono"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "code-md": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased flex">
+<!-- Navigation Drawer -->
+<nav class="w-64 h-full border-r border-outline-variant bg-surface fixed left-0 top-0 h-screen flex flex-col justify-between py-md z-50">
+<div>
+<div class="px-lg mb-xl mt-sm">
+<span class="font-headline-md text-headline-md font-bold text-primary">PharmaMind</span>
+</div>
+<ul class="flex flex-col gap-xs px-sm">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-bold text-label-bold">Overview</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" data-icon="search_check">search_check</span>
+<span class="font-label-bold text-label-bold">Candidate Explorer</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-label-bold text-label-bold">Shortlist</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-primary border-l-4 border-primary bg-surface-container-high hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined icon-filled" data-icon="compare_arrows" data-weight="fill">compare_arrows</span>
+<span class="font-label-bold text-label-bold">Compare</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+<span class="font-label-bold text-label-bold">What-if Lab</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-bold text-label-bold">Evidence</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer active:bg-primary-container/20" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+<span class="font-label-bold text-label-bold">Model &amp; Validation</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Top App Bar -->
+<header class="w-full h-14 border-b border-outline-variant bg-white fixed top-0 right-0 left-64 z-40 flex items-center justify-between px-lg">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="compare_arrows">compare_arrows</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Compare Candidates</span>
+</div>
+<div>
+<button class="font-label-bold text-label-bold text-primary hover:text-primary-fixed transition-colors cursor-pointer active:opacity-80 px-md py-sm border border-outline-variant rounded flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="download">download</span> Export
+            </button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 mt-14 p-lg w-full min-h-screen bg-surface flex flex-col gap-lg">
+<!-- Header Section -->
+<section class="flex justify-between items-end border-b border-outline-variant pb-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Scientific Comparison</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Selection: AMP-041 versus AMP-127</p>
+</div>
+<div class="bg-surface-container-high px-md py-sm rounded border border-outline-variant flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="distance">distance</span>
+<div>
+<p class="font-label-bold text-label-bold text-on-surface-variant uppercase text-[10px]">Embedding Distance</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">0.42</p>
+</div>
+</div>
+</section>
+<!-- Rationale Panel -->
+<section class="bg-white border border-outline-variant rounded p-md flex gap-md items-start">
+<div class="p-sm bg-primary-fixed/20 rounded-full">
+<span class="material-symbols-outlined text-primary" data-icon="lightbulb">lightbulb</span>
+</div>
+<div>
+<h3 class="font-label-bold text-label-bold text-on-surface mb-xs uppercase">Rationale: Why keep both?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl">These two candidates, despite a moderate embedding distance, occupy distinct regions of the sequence space. AMP-041 exhibits higher hydrophobicity suited for deep membrane penetration, whereas AMP-127 demonstrates superior solubility profiles. Retaining both significantly improves batch diversity and mitigates risk in downstream in vivo trials.</p>
+</div>
+</section>
+<!-- Comparison Grid -->
+<section class="grid grid-cols-2 gap-lg relative">
+<!-- Candidate 1: AMP-041 -->
+<div class="bg-white border border-outline-variant rounded flex flex-col">
+<div class="p-md border-b border-outline-variant bg-surface-container-lowest flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-primary">AMP-041</h2>
+<span class="bg-[#F1F3F5] text-on-surface-variant px-sm py-[2px] rounded font-body-sm text-body-sm flex items-center gap-xs border border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Lead
+                    </span>
+</div>
+<div class="p-md flex flex-col gap-md">
+<!-- Sequence -->
+<div>
+<p class="font-label-bold text-label-bold text-on-surface-variant mb-xs">Sequence</p>
+<div class="font-code-md text-code-md bg-surface-container p-sm rounded border border-outline-variant overflow-x-auto whitespace-nowrap text-on-surface">
+                            KWKLFKKIGIGKFLHSAKKF
+                        </div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-2 gap-sm">
+<div class="border border-outline-variant rounded p-sm bg-surface">
+<p class="font-label-bold text-label-bold text-on-surface-variant">Net Charge</p>
+<p class="font-headline-sm text-headline-sm">+7</p>
+</div>
+<div class="border border-outline-variant rounded p-sm bg-surface">
+<p class="font-label-bold text-label-bold text-on-surface-variant">Hydrophobicity</p>
+<p class="font-headline-sm text-headline-sm">0.68</p>
+</div>
+<div class="border border-outline-variant rounded p-sm bg-surface">
+<p class="font-label-bold text-label-bold text-on-surface-variant">Length</p>
+<p class="font-headline-sm text-headline-sm">20 aa</p>
+</div>
+<div class="border border-outline-variant rounded p-sm bg-surface">
+<p class="font-label-bold text-label-bold text-on-surface-variant">Evidence Count</p>
+<p class="font-headline-sm text-headline-sm">142</p>
+</div>
+</div>
+<!-- Visualizations placeholder -->
+<div class="border border-outline-variant rounded p-sm flex flex-col gap-sm">
+<p class="font-label-bold text-label-bold text-on-surface-variant">Helical Wheel</p>
+<div class="w-full h-32 bg-surface-container flex items-center justify-center rounded border border-outline-variant overflow-hidden relative">
+<img class="object-cover w-full h-full opacity-50 mix-blend-multiply" data-alt="A highly detailed scientific illustration of a helical wheel projection for a peptide sequence. The wheel shows amino acid residues arranged in a circle, with hydrophobic residues clustered on one side and hydrophilic residues on the other. The diagram is clinical, precise, and uses a restrained color palette of blues and greys on a stark white background, typical of high-end pharmaceutical research software." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4-7wc3gsuJEWfUUEPQm_GAtsnMkfN1p_hg2IWYHpOH6HS8XyLzd8y9Uaj53CBSFpUcPsMRANpKkk9DRJ9jxYXGP9Ij_x3H5e7QsSwGLYMeF_Nl2st-LAQ46kcz6_z1abJdVLaX_uvvtfLGgPaLKI2IFP7kCBrTrVQvoVdznZk1xNApHt6zlnj27NH-mz1xBD6-6HaHTEwnCYY2hqMfCR9XpSEdBxlfk_GCMWWGYViONV4FBNGHzPo"/>
+</div>
+</div>
+<!-- Activity / Toxicity -->
+<div class="flex flex-col gap-xs">
+<div class="flex justify-between items-center border-b border-outline-variant py-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant">Predicted Activity (MIC)</span>
+<span class="font-body-md text-body-md text-secondary font-bold">2.4 µg/mL</span>
+</div>
+<div class="flex justify-between items-center py-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant">Predicted Toxicity (HC50)</span>
+<span class="font-body-md text-body-md text-error font-bold">&gt;100 µg/mL</span>
+</div>
+</div>
+</div>
+</div>
+<!-- VS Badge -->
+<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-outline-variant rounded-full flex items-center justify-center z-10 shadow-sm text-on-surface-variant font-label-bold text-label-bold">
+                VS
+            </div>
+<!-- Candidate 2: AMP-127 -->
+<div class="bg-white border border-outline-variant rounded flex flex-col">
+<div class="p-md border-b border-outline-variant bg-surface-container-lowest flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-primary">AMP-127</h2>
+<span class="bg-[#F1F3F5] text-on-surface-variant px-sm py-[2px] rounded font-body-sm text-body-sm flex items-center gap-xs border border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Backup
+                    </span>
+</div>
+<div class="p-md flex flex-col gap-md">
+<!-- Sequence -->
+<div>
+<p class="font-label-bold text-label-bold text-on-surface-variant mb-xs">Sequence</p>
+<div class="font-code-md text-code-md bg-surface-container p-sm rounded border border-outline-variant overflow-x-auto whitespace-nowrap text-on-surface">
+                            GLFDIVKKVVGALGSL
+                        </div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-2 gap-sm">
+<div class="border border-outline-variant rounded p-sm bg-surface">
+<p class="font-label-bold text-label-bold text-on-surface-variant">Net Charge</p>
+<p class="font-headline-sm text-headline-sm">+3</p>
+</div>
+<div class="border border-outline-variant rounded p-sm bg-surface">
+<p class="font-label-bold text-label-bold text-on-surface-variant">Hydrophobicity</p>
+<p class="font-headline-sm text-headline-sm">0.45</p>
+</div>
+<div class="border border-outline-variant rounded p-sm bg-surface">
+<p class="font-label-bold text-label-bold text-on-surface-variant">Length</p>
+<p class="font-headline-sm text-headline-sm">16 aa</p>
+</div>
+<div class="border border-outline-variant rounded p-sm bg-surface">
+<p class="font-label-bold text-label-bold text-on-surface-variant">Evidence Count</p>
+<p class="font-headline-sm text-headline-sm">89</p>
+</div>
+</div>
+<!-- Visualizations placeholder -->
+<div class="border border-outline-variant rounded p-sm flex flex-col gap-sm">
+<p class="font-label-bold text-label-bold text-on-surface-variant">Helical Wheel</p>
+<div class="w-full h-32 bg-surface-container flex items-center justify-center rounded border border-outline-variant overflow-hidden relative">
+<img class="object-cover w-full h-full opacity-50 mix-blend-multiply" data-alt="A highly detailed scientific illustration of a helical wheel projection for a shorter peptide sequence. The diagram shows amino acid residues in a circular arrangement, emphasizing structural properties. The aesthetic is strictly clinical, utilizing thin precise lines, sans-serif typography, and a minimalist blue/grey color scheme on a stark white background appropriate for enterprise biotech software." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA_Dg_PxA0WKcHkg64Yj0QGYU6VM1Jvzo_17a_gKVzUjpbCgwRTgrBSWqDwYfJxiYRBYJc7RyXzD-ebMrehwDOQR5F538Db9Ik6xpxMpcMzKY2OkqGOoX1RTSZEPrlV9GGwUWw0SDicq65u_vV0nw9C6a5gPJUx-hqkPm_zHKhLrWKMIZx-qpuY39KfSkN4zZIVq_pqWNVJ6yTRXyqZ5h-g2B9AstPo44Ze1FEyGTSZfwEH8QXmWMB"/>
+</div>
+</div>
+<!-- Activity / Toxicity -->
+<div class="flex flex-col gap-xs">
+<div class="flex justify-between items-center border-b border-outline-variant py-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant">Predicted Activity (MIC)</span>
+<span class="font-body-md text-body-md text-on-surface font-bold">4.8 µg/mL</span>
+</div>
+<div class="flex justify-between items-center py-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant">Predicted Toxicity (HC50)</span>
+<span class="font-body-md text-body-md text-on-surface font-bold">85 µg/mL</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

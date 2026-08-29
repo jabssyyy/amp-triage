@@ -1,0 +1,97 @@
+{
+  "Escherichia coli": {
+    "n_train": 845,
+    "n_test": 150,
+    "train_positive_rate": 0.6,
+    "cv": {
+      "roc_auc": 0.817,
+      "roc_auc_std": 0.0315,
+      "pr_auc": 0.8615,
+      "pr_auc_std": 0.0266,
+      "folds": 5
+    },
+    "test": {
+      "roc_auc": 0.7966,
+      "pr_auc": 0.8354,
+      "n": 150,
+      "positive_rate": 0.5933
+    },
+    "test_pr_auc_baseline": 0.5933
+  },
+  "Staphylococcus aureus": {
+    "n_train": 804,
+    "n_test": 142,
+    "train_positive_rate": 0.597,
+    "cv": {
+      "roc_auc": 0.7319,
+      "roc_auc_std": 0.0283,
+      "pr_auc": 0.7875,
+      "pr_auc_std": 0.0301,
+      "folds": 5
+    },
+    "test": {
+      "roc_auc": 0.795,
+      "pr_auc": 0.8255,
+      "n": 142,
+      "positive_rate": 0.5423
+    },
+    "test_pr_auc_baseline": 0.5423
+  },
+  "Pseudomonas aeruginosa": {
+    "n_train": 599,
+    "n_test": 106,
+    "train_positive_rate": 0.5726,
+    "cv": {
+      "roc_auc": 0.8181,
+      "roc_auc_std": 0.0332,
+      "pr_auc": 0.8579,
+      "pr_auc_std": 0.0226,
+      "folds": 5
+    },
+    "test": {
+      "roc_auc": 0.8124,
+      "pr_auc": 0.8292,
+      "n": 106,
+      "positive_rate": 0.5377
+    },
+    "test_pr_auc_baseline": 0.5377
+  },
+  "Klebsiella pneumoniae": {
+    "n_train": 155,
+    "n_test": 28,
+    "train_positive_rate": 0.4968,
+    "cv": {
+      "roc_auc": 0.7458,
+      "roc_auc_std": 0.0526,
+      "pr_auc": 0.7212,
+      "pr_auc_std": 0.0736,
+      "folds": 5
+    },
+    "test": {
+      "roc_auc": 0.8051,
+      "pr_auc": 0.7433,
+      "n": 28,
+      "positive_rate": 0.4643
+    },
+    "test_pr_auc_baseline": 0.4643
+  },
+  "Acinetobacter baumannii": {
+    "n_train": 90,
+    "n_test": 15,
+    "train_positive_rate": 0.6889,
+    "cv": {
+      "roc_auc": 0.5856,
+      "roc_auc_std": 0.1115,
+      "pr_auc": 0.787,
+      "pr_auc_std": 0.0608,
+      "folds": 5
+    },
+    "test": {
+      "roc_auc": 0.7222,
+      "pr_auc": 0.8636,
+      "n": 15,
+      "positive_rate": 0.6
+    },
+    "test_pr_auc_baseline": 0.6
+  }
+}

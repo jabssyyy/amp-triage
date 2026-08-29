@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaMind - Model &amp; Validation</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400;
+        }
+        
+        /* Custom Scrollbar for dense analytical view */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f4fafd; /* background */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c0c7d4; /* outline-variant */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #707784; /* outline */
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d3e4ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#00725b",
+                        "outline-variant": "#c0c7d4",
+                        "on-tertiary-fixed-variant": "#00513f",
+                        "on-secondary-fixed": "#002018",
+                        "tertiary-container": "#008468",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#404752",
+                        "primary-fixed-dim": "#a2c9ff",
+                        "on-secondary-fixed-variant": "#005140",
+                        "primary": "#005ea5",
+                        "surface-tint": "#0060a9",
+                        "secondary-container": "#6dfad2",
+                        "inverse-on-surface": "#ebf2f4",
+                        "on-tertiary-fixed": "#002118",
+                        "tertiary-fixed": "#63fbcf",
+                        "on-tertiary-container": "#f5fff9",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f4fafd",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#006b55",
+                        "surface-container-high": "#e2e9ec",
+                        "surface-container-low": "#eef5f7",
+                        "surface-container-highest": "#dde4e6",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#6dfad2",
+                        "primary-container": "#0077ce",
+                        "surface-container": "#e8eff1",
+                        "on-primary-container": "#fdfcff",
+                        "outline": "#707784",
+                        "surface-dim": "#d4dbdd",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#3fdeb4",
+                        "inverse-surface": "#2b3234",
+                        "on-surface": "#161d1f",
+                        "on-primary-fixed-variant": "#004881",
+                        "inverse-primary": "#a2c9ff",
+                        "secondary-fixed-dim": "#4bddb7",
+                        "surface-bright": "#f4fafd",
+                        "surface": "#f4fafd",
+                        "on-primary-fixed": "#001c38",
+                        "error": "#ba1a1a",
+                        "on-background": "#161d1f",
+                        "on-error": "#ffffff",
+                        "tertiary": "#006952",
+                        "surface-variant": "#dde4e6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xs": "4px",
+                        "edge-margin": "24px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter", "sans-serif"],
+                        "headline-sm": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter", "sans-serif"],
+                        "label-bold": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "code-md": ["IBM Plex Mono", "monospace"],
+                        "body-lg": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "code-md": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen overflow-hidden flex">
+<!-- Navigation Drawer (SideNav) -->
+<nav class="fixed left-0 top-0 h-screen flex flex-col justify-between py-md w-64 border-r border-outline-variant bg-surface z-50">
+<div>
+<!-- Brand Logo -->
+<div class="px-lg mb-xl flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[28px]">biotech</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">PharmaMind</span>
+</div>
+<!-- Navigation Links -->
+<ul class="flex flex-col gap-xs px-sm">
+<!-- Overview -->
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-bold text-label-bold">Overview</span>
+</a>
+</li>
+<!-- Candidate Explorer -->
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">search_check</span>
+<span class="font-label-bold text-label-bold">Candidate Explorer</span>
+</a>
+</li>
+<!-- Shortlist -->
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">star</span>
+<span class="font-label-bold text-label-bold">Shortlist</span>
+</a>
+</li>
+<!-- Compare -->
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">compare_arrows</span>
+<span class="font-label-bold text-label-bold">Compare</span>
+</a>
+</li>
+<!-- What-if Lab -->
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">biotech</span>
+<span class="font-label-bold text-label-bold">What-if Lab</span>
+</a>
+</li>
+<!-- Evidence -->
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-bold text-label-bold">Evidence</span>
+</a>
+</li>
+<!-- Model & Validation (ACTIVE) -->
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-r text-primary border-l-4 border-primary bg-surface-container-high transition-colors duration-200 cursor-pointer" href="#">
+<span class="material-symbols-outlined icon-fill">verified</span>
+<span class="font-label-bold text-label-bold">Model &amp; Validation</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Bottom Section (User/Settings) -->
+<div class="px-lg border-t border-outline-variant pt-md mt-auto">
+<div class="flex items-center gap-sm text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-bold text-label-bold">Settings</span>
+</div>
+</div>
+</nav>
+<!-- Top App Bar -->
+<header class="fixed top-0 right-0 left-64 z-40 flex items-center justify-between px-lg w-[calc(100%-16rem)] h-14 border-b border-outline-variant bg-surface-container-lowest">
+<div class="flex items-center gap-sm text-primary">
+<span class="material-symbols-outlined">verified</span>
+<h1 class="font-headline-sm text-headline-sm font-bold">Model &amp; Validation</h1>
+</div>
+<div>
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-md py-sm rounded hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">download</span>
+                Export Report
+            </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-14 p-lg w-full h-[calc(100vh-3.5rem)] overflow-y-auto bg-background">
+<div class="max-w-[1400px] mx-auto grid grid-cols-12 gap-gutter">
+<!-- Selection Method & Optimization Equation (Full Width Banner) -->
+<section class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded p-lg flex items-center justify-between">
+<div class="w-1/2 pr-lg">
+<div class="flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">functions</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Selection Method</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md">
+                        PharmaMind utilizes a Quality + Diversity log-determinant optimization strategy to select candidates. 
+                        This ensures the final shortlist maximizes predicted efficacy while maintaining sufficient chemical diversity to mitigate downstream trial risks.
+                    </p>
+<div class="inline-flex items-center gap-xs bg-surface-container px-sm py-xs rounded">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">Objective Function</span>
+</div>
+</div>
+<div class="w-1/2 bg-surface border border-outline-variant rounded p-xl flex items-center justify-center relative overflow-hidden">
+<!-- Subtle background decoration -->
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
+<div class="font-code-md text-[24px] leading-tight text-on-surface z-10 flex items-center gap-md">
+<span class="text-primary font-bold text-[32px]">q</span>
+<span>=</span>
+<span class="bg-white border border-outline-variant px-sm py-xs rounded">P(active)</span>
+<span class="text-on-surface-variant">*</span>
+<span class="bg-white border border-outline-variant px-sm py-xs rounded">(1 - P(toxic))</span>
+</div>
+</div>
+</section>
+<!-- Model Specifications (Left Column) -->
+<section class="col-span-4 flex flex-col gap-gutter">
+<!-- Architecture Details -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-lg">
+<h2 class="font-headline-sm text-headline-sm mb-md flex items-center gap-xs border-b border-outline-variant pb-sm">
+<span class="material-symbols-outlined text-[20px] text-primary">account_tree</span>
+                        Architecture Specs
+                    </h2>
+<ul class="flex flex-col gap-md">
+<li class="flex flex-col gap-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">Representation</span>
+<div class="flex items-center gap-sm">
+<span class="bg-primary-fixed text-on-primary-fixed-variant font-code-md text-code-md px-2 py-1 rounded">ESM2 Embeddings</span>
+<span class="text-on-surface-variant text-[12px]">(650M Parameters)</span>
+</div>
+</li>
+<li class="flex flex-col gap-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">Activity Model</span>
+<span class="font-body-md text-body-md text-on-surface bg-surface-container px-sm py-xs rounded inline-block w-max border border-outline-variant">Gradient Boosted Classifier</span>
+</li>
+<li class="flex flex-col gap-xs">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase">Toxicity Model</span>
+<span class="font-body-md text-body-md text-on-surface bg-surface-container px-sm py-xs rounded inline-block w-max border border-outline-variant">Gradient Boosted Classifier</span>
+</li>
+</ul>
+</div>
+<!-- Technical Notes -->
+<div class="bg-surface border border-outline-variant rounded p-lg relative overflow-hidden h-full">
+<!-- Decorator pattern -->
+<div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-outline-variant/20 to-transparent rounded-bl-full pointer-events-none"></div>
+<h2 class="font-headline-sm text-headline-sm mb-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px] text-tertiary">info</span>
+                        Technical Notes
+                    </h2>
+<div class="font-body-sm text-body-sm text-on-surface-variant space-y-md">
+<p>
+<strong class="text-on-surface">Train/Test Split Methodology:</strong><br/>
+                            Models were evaluated using an 80/20 train/test split. To ensure rigorous evaluation of generalizability to novel targets, a strict sequence-level separation strategy was applied.
+                        </p>
+<p>
+<strong class="text-on-surface">Sequence-Level Separation:</strong><br/>
+                            Peptides in the test set share no more than 40% sequence identity with any peptide in the training set, mitigating data leakage and memorization artifacts.
+                        </p>
+</div>
+</div>
+</section>
+<!-- Metrics & Charts (Right Column) -->
+<section class="col-span-8 flex flex-col gap-gutter">
+<!-- Performance Metrics Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded overflow-hidden">
+<div class="p-lg border-b border-outline-variant bg-surface-container-low flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">table_chart</span>
+                            Validation Metrics
+                        </h2>
+<span class="font-label-bold text-label-bold text-on-surface-variant bg-surface px-2 py-1 rounded border border-outline-variant">Test Set (N=12,450)</span>
+</div>
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface text-on-surface-variant font-label-bold text-label-bold uppercase border-b border-outline-variant">
+<th class="p-md pl-lg font-normal">Model Sub-System</th>
+<th class="p-md font-normal">Accuracy</th>
+<th class="p-md font-normal">Precision</th>
+<th class="p-md font-normal">Recall</th>
+<th class="p-md font-normal">F1 Score</th>
+<th class="p-md pr-lg font-normal">ROC-AUC</th>
+</tr>
+</thead>
+<tbody class="font-code-md text-code-md text-on-surface">
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container transition-colors">
+<td class="p-md pl-lg font-body-md text-body-md font-medium">Activity (Efficacy)</td>
+<td class="p-md">0.912</td>
+<td class="p-md">0.884</td>
+<td class="p-md text-secondary font-bold">0.931</td>
+<td class="p-md">0.907</td>
+<td class="p-md pr-lg text-primary font-bold">0.954</td>
+</tr>
+<tr class="bg-surface hover:bg-surface-container transition-colors">
+<td class="p-md pl-lg font-body-md text-body-md font-medium">Toxicity (Safety)</td>
+<td class="p-md text-secondary font-bold">0.945</td>
+<td class="p-md">0.921</td>
+<td class="p-md">0.898</td>
+<td class="p-md text-secondary font-bold">0.909</td>
+<td class="p-md pr-lg text-primary font-bold">0.972</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Held-out Recovery Chart Mockup -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-lg flex flex-col flex-grow">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-headline-sm text-headline-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">monitoring</span>
+                            Held-out Candidate Recovery
+                        </h2>
+<!-- Legend -->
+<div class="flex gap-md font-label-bold text-label-bold">
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>
+<span class="text-on-surface">PharmaMind Selection</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-sm bg-outline-variant border border-outline"></span>
+<span class="text-on-surface-variant">Baseline (Top-N)</span>
+</div>
+</div>
+</div>
+<!-- CSS Bar Chart Canvas -->
+<div class="relative w-full flex-grow flex items-end pt-xl border-b border-l border-outline-variant pb-xs pl-xs h-[250px]">
+<!-- Y-Axis Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none pl-xs pt-xl">
+<div class="w-full border-t border-outline-variant/30 flex items-center"><span class="absolute -left-8 text-[10px] text-on-surface-variant">100%</span></div>
+<div class="w-full border-t border-outline-variant/30 flex items-center"><span class="absolute -left-8 text-[10px] text-on-surface-variant">75%</span></div>
+<div class="w-full border-t border-outline-variant/30 flex items-center"><span class="absolute -left-8 text-[10px] text-on-surface-variant">50%</span></div>
+<div class="w-full border-t border-outline-variant/30 flex items-center"><span class="absolute -left-8 text-[10px] text-on-surface-variant">25%</span></div>
+<div class="w-full flex items-center"><span class="absolute -left-6 text-[10px] text-on-surface-variant">0%</span></div>
+</div>
+<!-- Bar Groups (X-Axis: Top N) -->
+<div class="w-full h-full flex justify-around items-end z-10 px-md">
+<!-- Group 1: Top 10 -->
+<div class="flex gap-xs items-end h-full relative group">
+<div class="w-12 bg-outline-variant h-[45%] rounded-t-sm border border-outline relative">
+<div class="absolute -top-6 w-full text-center text-[10px] font-code-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">45%</div>
+</div>
+<div class="w-12 bg-primary h-[78%] rounded-t-sm relative">
+<div class="absolute -top-6 w-full text-center text-[10px] font-code-md font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">78%</div>
+</div>
+<div class="absolute -bottom-6 w-full text-center font-label-bold text-label-bold text-on-surface-variant">Top 10</div>
+</div>
+<!-- Group 2: Top 50 -->
+<div class="flex gap-xs items-end h-full relative group">
+<div class="w-12 bg-outline-variant h-[60%] rounded-t-sm border border-outline relative">
+<div class="absolute -top-6 w-full text-center text-[10px] font-code-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">60%</div>
+</div>
+<div class="w-12 bg-primary h-[89%] rounded-t-sm relative">
+<div class="absolute -top-6 w-full text-center text-[10px] font-code-md font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">89%</div>
+</div>
+<div class="absolute -bottom-6 w-full text-center font-label-bold text-label-bold text-on-surface-variant">Top 50</div>
+</div>
+<!-- Group 3: Top 100 -->
+<div class="flex gap-xs items-end h-full relative group">
+<div class="w-12 bg-outline-variant h-[75%] rounded-t-sm border border-outline relative">
+<div class="absolute -top-6 w-full text-center text-[10px] font-code-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">75%</div>
+</div>
+<div class="w-12 bg-primary h-[94%] rounded-t-sm relative">
+<div class="absolute -top-6 w-full text-center text-[10px] font-code-md font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">94%</div>
+</div>
+<div class="absolute -bottom-6 w-full text-center font-label-bold text-label-bold text-on-surface-variant">Top 100</div>
+</div>
+</div>
+</div>
+<!-- X-Axis Label -->
+<div class="mt-8 text-center font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Number of Candidates Selected</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

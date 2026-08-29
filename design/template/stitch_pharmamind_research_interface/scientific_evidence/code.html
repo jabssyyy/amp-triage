@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaMind - Scientific Evidence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed": "#d3e4ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#00725b",
+                        "outline-variant": "#c0c7d4",
+                        "on-tertiary-fixed-variant": "#00513f",
+                        "on-secondary-fixed": "#002018",
+                        "tertiary-container": "#008468",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#404752",
+                        "primary-fixed-dim": "#a2c9ff",
+                        "on-secondary-fixed-variant": "#005140",
+                        "primary": "#005ea5",
+                        "surface-tint": "#0060a9",
+                        "secondary-container": "#6dfad2",
+                        "inverse-on-surface": "#ebf2f4",
+                        "on-tertiary-fixed": "#002118",
+                        "tertiary-fixed": "#63fbcf",
+                        "on-tertiary-container": "#f5fff9",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f4fafd",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#006b55",
+                        "surface-container-high": "#e2e9ec",
+                        "surface-container-low": "#eef5f7",
+                        "surface-container-highest": "#dde4e6",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#6dfad2",
+                        "primary-container": "#0077ce",
+                        "surface-container": "#e8eff1",
+                        "on-primary-container": "#fdfcff",
+                        "outline": "#707784",
+                        "surface-dim": "#d4dbdd",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#3fdeb4",
+                        "inverse-surface": "#2b3234",
+                        "on-surface": "#161d1f",
+                        "on-primary-fixed-variant": "#004881",
+                        "inverse-primary": "#a2c9ff",
+                        "secondary-fixed-dim": "#4bddb7",
+                        "surface-bright": "#f4fafd",
+                        "surface": "#f4fafd",
+                        "on-primary-fixed": "#001c38",
+                        "error": "#ba1a1a",
+                        "on-background": "#161d1f",
+                        "on-error": "#ffffff",
+                        "tertiary": "#006952",
+                        "surface-variant": "#dde4e6"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "md": "16px",
+                        "xs": "4px",
+                        "edge-margin": "24px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "gutter": "16px"
+                    },
+                    fontFamily: {
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "code-md": ["IBM Plex Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    fontSize: {
+                        "body-sm": ["12px", { lineHeight: "18px", fontWeight: "400" }],
+                        "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "600" }],
+                        "label-bold": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "code-md": ["13px", { lineHeight: "20px", fontWeight: "400" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F8F9FA; }
+        .academic-card { border: 1px solid #E1E4E8; background-color: #FFFFFF; }
+        .academic-card:hover { border-color: #0984E3; }
+        .status-pill-amber { width: 8px; height: 8px; border-radius: 50%; background-color: #FFC107; display: inline-block; }
+        .status-pill-green { width: 8px; height: 8px; border-radius: 50%; background-color: #28A745; display: inline-block; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen overflow-hidden flex">
+<!-- NavigationDrawer -->
+<nav class="w-64 h-full border-r border-outline-variant dark:border-outline bg-surface dark:bg-surface-dim flex flex-col justify-between py-md fixed left-0 top-0 z-50">
+<div>
+<div class="px-lg mb-xl">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">PharmaMind</span>
+</div>
+<ul class="flex flex-col">
+<li class="cursor-pointer active:bg-primary-container/20 px-lg py-sm hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-bold text-label-bold">Overview</span>
+</a>
+</li>
+<li class="cursor-pointer active:bg-primary-container/20 px-lg py-sm hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="search_check">search_check</span>
+<span class="font-label-bold text-label-bold">Candidate Explorer</span>
+</a>
+</li>
+<li class="cursor-pointer active:bg-primary-container/20 px-lg py-sm hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-label-bold text-label-bold">Shortlist</span>
+</a>
+</li>
+<li class="cursor-pointer active:bg-primary-container/20 px-lg py-sm hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="compare_arrows">compare_arrows</span>
+<span class="font-label-bold text-label-bold">Compare</span>
+</a>
+</li>
+<li class="cursor-pointer active:bg-primary-container/20 px-lg py-sm hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+<span class="font-label-bold text-label-bold">What-if Lab</span>
+</a>
+</li>
+<li class="cursor-pointer active:bg-primary-container/20 px-lg py-sm bg-surface-container-high dark:bg-surface-container-highest border-l-4 border-primary dark:border-primary-fixed">
+<a class="flex items-center gap-md text-primary dark:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-bold text-label-bold">Evidence</span>
+</a>
+</li>
+<li class="cursor-pointer active:bg-primary-container/20 px-lg py-sm hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+<span class="font-label-bold text-label-bold">Model &amp; Validation</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="w-full h-14 border-b border-outline-variant dark:border-outline bg-white dark:bg-surface-container-lowest fixed top-0 right-0 left-64 z-40 flex items-center justify-between px-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer active:opacity-80 hover:text-primary transition-colors" data-icon="microbiology">microbiology</span>
+<h1 class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed">Evidence for AMP-041</h1>
+</div>
+<button class="font-label-bold text-label-bold text-primary dark:text-primary-fixed cursor-pointer active:opacity-80 hover:text-primary-fixed transition-colors">Export</button>
+</header>
+<!-- Main Content Stage -->
+<main class="ml-64 mt-14 p-lg w-full h-[calc(100vh-3.5rem)] overflow-y-auto">
+<div class="max-w-7xl mx-auto space-y-lg">
+<!-- Summary Dashboard -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="academic-card p-md rounded flex flex-col justify-center items-start">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase mb-xs">Supporting Publications</span>
+<span class="font-headline-lg text-headline-lg text-primary">6</span>
+</div>
+<div class="academic-card p-md rounded flex flex-col justify-center items-start">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase mb-xs">Related Peptides Found</span>
+<span class="font-headline-lg text-headline-lg text-secondary">3</span>
+</div>
+<div class="academic-card p-md rounded flex flex-col justify-center items-start">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase mb-xs flex items-center gap-xs"><span class="status-pill-amber"></span> Evidence Confidence</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Moderate</span>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Direct Evidence List -->
+<div class="lg:col-span-8 space-y-md">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" data-icon="bookmark">bookmark</span> Direct Evidence
+                    </h2>
+<article class="academic-card p-lg rounded space-y-sm transition-colors duration-200">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary font-semibold w-5/6">In vitro antimicrobial activity of novel synthetic peptide AMP-041 against multidrug-resistant pathogens</h3>
+<span class="bg-[#F1F3F5] text-on-surface-variant px-sm py-xs rounded font-body-sm">2023</span>
+</div>
+<p class="font-body-md text-on-surface-variant">Journal of Antimicrobial Chemotherapy • Authors: Chen L., Smith J., et al.</p>
+<div class="bg-surface p-sm rounded border border-outline-variant mt-sm">
+<span class="font-label-bold text-label-bold text-tertiary">RELEVANT FINDING</span>
+<p class="font-body-md text-on-surface mt-xs">Demonstrated MIC of 4 μg/mL against MRSA strains. Low hemolytic activity observed in human erythrocytes.</p>
+</div>
+<div class="flex justify-between items-center mt-md pt-sm border-t border-outline-variant">
+<div class="flex items-center gap-sm">
+<span class="bg-[#F1F3F5] text-on-surface-variant px-sm py-xs rounded font-body-sm">Direct Match</span>
+</div>
+<a class="font-label-bold text-label-bold text-primary hover:underline flex items-center gap-xs" href="#">
+                                PubMed <span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+</article>
+<article class="academic-card p-lg rounded space-y-sm transition-colors duration-200">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary font-semibold w-5/6">Structural analysis and membrane disruption mechanism of AMP-041</h3>
+<span class="bg-[#F1F3F5] text-on-surface-variant px-sm py-xs rounded font-body-sm">2022</span>
+</div>
+<p class="font-body-md text-on-surface-variant">Biophysical Journal • Authors: Patel R., et al.</p>
+<div class="bg-surface p-sm rounded border border-outline-variant mt-sm">
+<span class="font-label-bold text-label-bold text-tertiary">RELEVANT FINDING</span>
+<p class="font-body-md text-on-surface mt-xs">NMR studies indicate a strong alpha-helical propensity in membrane-mimetic environments, correlating with permeabilization assays.</p>
+</div>
+<div class="flex justify-between items-center mt-md pt-sm border-t border-outline-variant">
+<div class="flex items-center gap-sm">
+<span class="bg-[#F1F3F5] text-on-surface-variant px-sm py-xs rounded font-body-sm">Direct Match</span>
+</div>
+<a class="font-label-bold text-label-bold text-primary hover:underline flex items-center gap-xs" href="#">
+                                PubMed <span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+</article>
+</div>
+<!-- Similar Peptide Evidence -->
+<div class="lg:col-span-4 space-y-md">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-secondary" data-icon="content_copy">content_copy</span> Similar Peptides
+                    </h2>
+<article class="academic-card p-md rounded space-y-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-bold text-label-bold text-secondary">AMP-039</span>
+<span class="font-body-sm text-on-surface-variant bg-[#F1F3F5] px-xs rounded border border-outline-variant">Sim: 85%</span>
+</div>
+<div class="code-md overflow-x-auto whitespace-nowrap bg-surface-container-low p-xs rounded border border-outline-variant text-on-surface">
+                            KLVWKIKKWIQQL<span class="text-error font-bold">A</span>
+</div>
+<h4 class="font-body-md font-semibold text-on-surface mt-sm">Toxicity profile of AMP-039 in murine models</h4>
+<p class="font-body-sm text-on-surface-variant line-clamp-2">In vivo studies showed renal toxicity at doses above 20mg/kg. Caution advised for related structures.</p>
+<div class="flex justify-end pt-xs">
+<a class="font-label-bold text-label-bold text-primary hover:underline text-xs" href="#">View</a>
+</div>
+</article>
+<article class="academic-card p-md rounded space-y-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-bold text-label-bold text-secondary">LL-37 analog 4</span>
+<span class="font-body-sm text-on-surface-variant bg-[#F1F3F5] px-xs rounded border border-outline-variant">Sim: 72%</span>
+</div>
+<div class="code-md overflow-x-auto whitespace-nowrap bg-surface-container-low p-xs rounded border border-outline-variant text-on-surface">
+<span class="text-error font-bold">R</span>LVWKIKKWIQQL<span class="text-error font-bold">K</span>
+</div>
+<h4 class="font-body-md font-semibold text-on-surface mt-sm">Synergistic effects with conventional antibiotics</h4>
+<p class="font-body-sm text-on-surface-variant line-clamp-2">Demonstrated fractional inhibitory concentration index (FICI) &lt; 0.5 when combined with colistin.</p>
+<div class="flex justify-end pt-xs">
+<a class="font-label-bold text-label-bold text-primary hover:underline text-xs" href="#">View</a>
+</div>
+</article>
+</div>
+</div>
+</div>
+</main>
+</body></html>

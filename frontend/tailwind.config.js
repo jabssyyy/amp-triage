@@ -1,0 +1,55 @@
+/** Material 3 tokens ported verbatim from the Stitch template
+ *  (stitch_pharmamind_research_interface/clinical_precision/DESIGN.md).
+ *  Do not hand-tune these values - they are the design contract. */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#005ea5", "on-primary": "#ffffff",
+        "primary-container": "#0077ce", "on-primary-container": "#fdfcff",
+        "primary-fixed": "#d3e4ff", "primary-fixed-dim": "#a2c9ff",
+        "on-primary-fixed": "#001c38", "on-primary-fixed-variant": "#004881",
+        "inverse-primary": "#a2c9ff", "surface-tint": "#0060a9",
+        secondary: "#006b55", "on-secondary": "#ffffff",
+        "secondary-container": "#6dfad2", "on-secondary-container": "#00725b",
+        "secondary-fixed": "#6dfad2", "secondary-fixed-dim": "#4bddb7",
+        "on-secondary-fixed": "#002018", "on-secondary-fixed-variant": "#005140",
+        tertiary: "#006952", "on-tertiary": "#ffffff",
+        "tertiary-container": "#008468", "on-tertiary-container": "#f5fff9",
+        "tertiary-fixed": "#63fbcf", "tertiary-fixed-dim": "#3fdeb4",
+        "on-tertiary-fixed": "#002118", "on-tertiary-fixed-variant": "#00513f",
+        error: "#ba1a1a", "on-error": "#ffffff",
+        "error-container": "#ffdad6", "on-error-container": "#93000a",
+        surface: "#f4fafd", "surface-dim": "#d4dbdd", "surface-bright": "#f4fafd",
+        "surface-container-lowest": "#ffffff", "surface-container-low": "#eef5f7",
+        "surface-container": "#e8eff1", "surface-container-high": "#e2e9ec",
+        "surface-container-highest": "#dde4e6", "surface-variant": "#dde4e6",
+        "on-surface": "#161d1f", "on-surface-variant": "#404752",
+        "inverse-surface": "#2b3234", "inverse-on-surface": "#ebf2f4",
+        outline: "#707784", "outline-variant": "#c0c7d4",
+        background: "#f4fafd", "on-background": "#161d1f",
+      },
+      borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" },
+      spacing: { xs: "4px", sm: "8px", md: "16px", lg: "24px", xl: "32px",
+                 base: "4px", gutter: "16px", "edge-margin": "24px" },
+      fontFamily: {
+        "body-sm": ["Inter"], "body-md": ["Inter"], "body-lg": ["Inter"],
+        "headline-sm": ["Inter"], "headline-md": ["Inter"], "headline-lg": ["Inter"],
+        "label-bold": ["Inter"], "code-md": ["IBM Plex Mono"],
+      },
+      fontSize: {
+        "body-sm": ["12px", { lineHeight: "18px", fontWeight: "400" }],
+        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+        "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "600" }],
+        "label-bold": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600" }],
+        "code-md": ["13px", { lineHeight: "20px", fontWeight: "400" }],
+      },
+    },
+  },
+  plugins: [],
+}

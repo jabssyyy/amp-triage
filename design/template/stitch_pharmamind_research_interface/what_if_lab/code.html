@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaMind - What-if Lab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d3e4ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#00725b",
+                        "outline-variant": "#c0c7d4",
+                        "on-tertiary-fixed-variant": "#00513f",
+                        "on-secondary-fixed": "#002018",
+                        "tertiary-container": "#008468",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#404752",
+                        "primary-fixed-dim": "#a2c9ff",
+                        "on-secondary-fixed-variant": "#005140",
+                        "primary": "#005ea5",
+                        "surface-tint": "#0060a9",
+                        "secondary-container": "#6dfad2",
+                        "inverse-on-surface": "#ebf2f4",
+                        "on-tertiary-fixed": "#002118",
+                        "tertiary-fixed": "#63fbcf",
+                        "on-tertiary-container": "#f5fff9",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f4fafd",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#006b55",
+                        "surface-container-high": "#e2e9ec",
+                        "surface-container-low": "#eef5f7",
+                        "surface-container-highest": "#dde4e6",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#6dfad2",
+                        "primary-container": "#0077ce",
+                        "surface-container": "#e8eff1",
+                        "on-primary-container": "#fdfcff",
+                        "outline": "#707784",
+                        "surface-dim": "#d4dbdd",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#3fdeb4",
+                        "inverse-surface": "#2b3234",
+                        "on-surface": "#161d1f",
+                        "on-primary-fixed-variant": "#004881",
+                        "inverse-primary": "#a2c9ff",
+                        "secondary-fixed-dim": "#4bddb7",
+                        "surface-bright": "#f4fafd",
+                        "surface": "#f4fafd",
+                        "on-primary-fixed": "#001c38",
+                        "error": "#ba1a1a",
+                        "on-background": "#161d1f",
+                        "on-error": "#ffffff",
+                        "tertiary": "#006952",
+                        "surface-variant": "#dde4e6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xs": "4px",
+                        "edge-margin": "24px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "code-md": ["IBM Plex Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "code-md": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-container { font-family: 'IBM Plex Mono', monospace; }
+        .data-table-row:nth-child(even) { background-color: #ffffff; }
+        .data-table-row:nth-child(odd) { background-color: #F8F9FA; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Navigation Drawer -->
+<nav class="fixed left-0 top-0 h-screen flex flex-col justify-between py-md w-64 border-r border-outline-variant bg-surface">
+<div>
+<div class="px-edge-margin pb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">PharmaMind</h1>
+</div>
+<ul class="flex flex-col">
+<li class="px-lg py-sm flex items-center gap-md cursor-pointer active:bg-primary-container/20 text-on-surface-variant hover:bg-surface-container transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-bold text-label-bold">Overview</span>
+</li>
+<li class="px-lg py-sm flex items-center gap-md cursor-pointer active:bg-primary-container/20 text-on-surface-variant hover:bg-surface-container transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">search_check</span>
+<span class="font-label-bold text-label-bold">Candidate Explorer</span>
+</li>
+<li class="px-lg py-sm flex items-center gap-md cursor-pointer active:bg-primary-container/20 text-on-surface-variant hover:bg-surface-container transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">star</span>
+<span class="font-label-bold text-label-bold">Shortlist</span>
+</li>
+<li class="px-lg py-sm flex items-center gap-md cursor-pointer active:bg-primary-container/20 text-on-surface-variant hover:bg-surface-container transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">compare_arrows</span>
+<span class="font-label-bold text-label-bold">Compare</span>
+</li>
+<li class="px-lg py-sm flex items-center gap-md cursor-pointer text-primary border-l-4 border-primary bg-surface-container-high">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">biotech</span>
+<span class="font-label-bold text-label-bold">What-if Lab</span>
+</li>
+<li class="px-lg py-sm flex items-center gap-md cursor-pointer active:bg-primary-container/20 text-on-surface-variant hover:bg-surface-container transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+<span class="font-label-bold text-label-bold">Evidence</span>
+</li>
+<li class="px-lg py-sm flex items-center gap-md cursor-pointer active:bg-primary-container/20 text-on-surface-variant hover:bg-surface-container transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">verified</span>
+<span class="font-label-bold text-label-bold">Model &amp; Validation</span>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Top App Bar -->
+<header class="fixed top-0 right-0 left-64 z-40 flex items-center justify-between px-lg w-[calc(100%-16rem)] h-14 border-b border-outline-variant bg-white">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">microbiology</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">What-if Lab</h2>
+</div>
+<button class="font-label-bold text-label-bold text-primary border border-outline-variant bg-white hover:bg-surface-container px-md py-xs rounded cursor-pointer active:opacity-80 transition-colors">
+            Export
+        </button>
+</header>
+<!-- Main Content Stage -->
+<main class="ml-64 mt-14 p-edge-margin bg-background">
+<div class="mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">What-if Sequence Explorer</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Explore how peptide modifications affect predicted activity, toxicity and shortlist position.</p>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Input & Sequence Section (Left Col) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-gutter">
+<!-- Sequence Editor Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-label-bold text-label-bold text-on-surface">SEQUENCE MODIFICATION</h3>
+<div class="flex items-center gap-xs">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">AMP-041 Baseline</span>
+</div>
+</div>
+<div class="space-y-md">
+<!-- Original -->
+<div>
+<label class="block font-label-bold text-label-bold text-on-surface-variant mb-xs">ORIGINAL (AMP-041)</label>
+<div class="w-full border border-outline-variant bg-surface px-md py-sm rounded overflow-x-auto code-container text-on-surface font-code-md text-code-md">
+                                GIGKFLHSAKKFGKAFVGEIMNS
+                            </div>
+</div>
+<!-- Modified -->
+<div>
+<label class="block font-label-bold text-label-bold text-on-surface-variant mb-xs">MODIFIED SEQUENCE</label>
+<div class="relative">
+<input class="w-full border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 bg-surface-container-lowest px-md py-sm rounded code-container text-on-surface font-code-md text-code-md outline-none" spellcheck="false" type="text" value="GIGKFLHSAKKWGKAFVGEIMNS"/>
+<div class="absolute inset-0 pointer-events-none px-md py-sm font-code-md text-code-md code-container text-transparent">
+                                    GIGKFLHSAKK<span class="text-error bg-error-container/30">W</span>GKAFVGEIMNS
+                                </div>
+</div>
+<p class="mt-xs font-body-sm text-body-sm text-on-surface-variant">Editing residue 12 (F → W). Press Enter to re-score.</p>
+</div>
+<div class="flex justify-end pt-sm">
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-lg py-sm rounded hover:bg-surface-tint transition-colors">
+                                Re-score sequence
+                            </button>
+</div>
+</div>
+</div>
+<!-- Structural Impact (Helical Wheels) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md flex-grow">
+<h3 class="font-label-bold text-label-bold text-on-surface mb-md">STRUCTURAL IMPACT (HELICAL WHEEL)</h3>
+<div class="grid grid-cols-2 gap-md h-[300px]">
+<div class="border border-outline-variant bg-surface rounded flex flex-col items-center justify-center p-sm relative">
+<span class="font-label-bold text-label-bold text-on-surface-variant absolute top-sm left-sm">ORIGINAL</span>
+<!-- Placeholder for Helical Wheel Viz -->
+<div class="w-48 h-48 rounded-full border border-outline-variant border-dashed flex items-center justify-center relative">
+<span class="material-symbols-outlined text-outline-variant text-4xl" style="font-variation-settings: 'FILL' 0;">toll</span>
+<div class="absolute w-2 h-2 bg-on-surface-variant rounded-full top-4 right-10"></div>
+<div class="absolute w-2 h-2 bg-on-surface-variant rounded-full bottom-4 left-10"></div>
+</div>
+</div>
+<div class="border border-outline-variant bg-surface rounded flex flex-col items-center justify-center p-sm relative">
+<span class="font-label-bold text-label-bold text-on-surface-variant absolute top-sm left-sm">MODIFIED</span>
+<!-- Placeholder for Helical Wheel Viz -->
+<div class="w-48 h-48 rounded-full border border-primary/30 border-dashed flex items-center justify-center relative">
+<span class="material-symbols-outlined text-primary/50 text-4xl" style="font-variation-settings: 'FILL' 0;">toll</span>
+<div class="absolute w-3 h-3 bg-error rounded-full top-4 right-10 ring-2 ring-error-container"></div>
+<div class="absolute w-2 h-2 bg-on-surface-variant rounded-full bottom-4 left-10"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Comparison Metrics (Right Col) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg flex flex-col overflow-hidden h-full">
+<div class="p-md border-b border-outline-variant bg-surface">
+<h3 class="font-label-bold text-label-bold text-on-surface">PREDICTED METRICS</h3>
+</div>
+<div class="flex flex-col flex-grow">
+<!-- Metric Row 1 -->
+<div class="p-md border-b border-outline-variant data-table-row flex justify-between items-center">
+<div>
+<span class="block font-label-bold text-label-bold text-on-surface-variant mb-base">ACTIVITY SCORE</span>
+<div class="flex items-center gap-sm">
+<span class="font-code-md text-code-md text-on-surface">0.92</span>
+<span class="material-symbols-outlined text-outline text-[16px]" style="font-variation-settings: 'FILL' 0;">arrow_right_alt</span>
+<span class="font-code-md text-code-md text-error">0.89</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">trending_down</span>
+</div>
+<!-- Metric Row 2 -->
+<div class="p-md border-b border-outline-variant data-table-row flex justify-between items-center">
+<div>
+<span class="block font-label-bold text-label-bold text-on-surface-variant mb-base">TOXICITY (HEMOLYTIC)</span>
+<div class="flex items-center gap-sm">
+<span class="font-code-md text-code-md text-on-surface">0.08</span>
+<span class="material-symbols-outlined text-outline text-[16px]" style="font-variation-settings: 'FILL' 0;">arrow_right_alt</span>
+<span class="font-code-md text-code-md text-secondary">0.04</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">trending_down</span>
+</div>
+<!-- Metric Row 3 -->
+<div class="p-md border-b border-outline-variant data-table-row flex justify-between items-center">
+<div>
+<span class="block font-label-bold text-label-bold text-on-surface-variant mb-base">OVERALL QUALITY</span>
+<div class="flex items-center gap-sm">
+<span class="font-code-md text-code-md text-on-surface">0.846</span>
+<span class="material-symbols-outlined text-outline text-[16px]" style="font-variation-settings: 'FILL' 0;">arrow_right_alt</span>
+<span class="font-code-md text-code-md text-secondary">0.854</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<!-- Metric Row 4 -->
+<div class="p-md data-table-row flex justify-between items-center flex-grow">
+<div>
+<span class="block font-label-bold text-label-bold text-on-surface-variant mb-base">SHORTLIST RANK</span>
+<div class="flex items-center gap-sm">
+<span class="font-headline-md text-headline-md text-on-surface">#4</span>
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 0;">arrow_right_alt</span>
+<span class="font-headline-md text-headline-md text-secondary">#3</span>
+</div>
+</div>
+<div class="bg-surface-container px-sm py-xs rounded flex items-center gap-xs">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm text-on-surface">Improved</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

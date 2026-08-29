@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaMind - Research Overview</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#d3e4ff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#00725b",
+                    "outline-variant": "#c0c7d4",
+                    "on-tertiary-fixed-variant": "#00513f",
+                    "on-secondary-fixed": "#002018",
+                    "tertiary-container": "#008468",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#404752",
+                    "primary-fixed-dim": "#a2c9ff",
+                    "on-secondary-fixed-variant": "#005140",
+                    "primary": "#005ea5",
+                    "surface-tint": "#0060a9",
+                    "secondary-container": "#6dfad2",
+                    "inverse-on-surface": "#ebf2f4",
+                    "on-tertiary-fixed": "#002118",
+                    "tertiary-fixed": "#63fbcf",
+                    "on-tertiary-container": "#f5fff9",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#f4fafd",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#006b55",
+                    "surface-container-high": "#e2e9ec",
+                    "surface-container-low": "#eef5f7",
+                    "surface-container-highest": "#dde4e6",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#6dfad2",
+                    "primary-container": "#0077ce",
+                    "surface-container": "#e8eff1",
+                    "on-primary-container": "#fdfcff",
+                    "outline": "#707784",
+                    "surface-dim": "#d4dbdd",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#3fdeb4",
+                    "inverse-surface": "#2b3234",
+                    "on-surface": "#161d1f",
+                    "on-primary-fixed-variant": "#004881",
+                    "inverse-primary": "#a2c9ff",
+                    "secondary-fixed-dim": "#4bddb7",
+                    "surface-bright": "#f4fafd",
+                    "surface": "#f4fafd",
+                    "on-primary-fixed": "#001c38",
+                    "error": "#ba1a1a",
+                    "on-background": "#161d1f",
+                    "on-error": "#ffffff",
+                    "tertiary": "#006952",
+                    "surface-variant": "#dde4e6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xs": "4px",
+                    "edge-margin": "24px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "base": "4px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "code-md": ["IBM Plex Mono"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "code-md": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Base styles to enforce code constraints */
+        .code-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none; /* Firefox */
+        }
+        .code-container::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- NavigationDrawer Component -->
+<nav class="bg-surface dark:bg-surface-dim w-64 h-full border-r border-outline-variant dark:border-outline fixed left-0 top-0 flex flex-col justify-between py-md z-50">
+<div>
+<!-- Brand -->
+<div class="px-md mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">PharmaMind</h1>
+</div>
+<!-- Navigation Items -->
+<ul class="flex flex-col">
+<!-- Active Item: Overview -->
+<li class="cursor-pointer active:bg-primary-container/20 hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 text-primary dark:text-primary-fixed border-l-4 border-primary dark:border-primary-fixed bg-surface-container-high dark:bg-surface-container-highest py-3 px-4 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-bold text-label-bold">Overview</span>
+</li>
+<!-- Inactive Items -->
+<li class="cursor-pointer active:bg-primary-container/20 hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed py-3 px-4 ml-1 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="search_check">search_check</span>
+<span class="font-label-bold text-label-bold">Candidate Explorer</span>
+</li>
+<li class="cursor-pointer active:bg-primary-container/20 hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed py-3 px-4 ml-1 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-label-bold text-label-bold">Shortlist</span>
+</li>
+<li class="cursor-pointer active:bg-primary-container/20 hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed py-3 px-4 ml-1 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="compare_arrows">compare_arrows</span>
+<span class="font-label-bold text-label-bold">Compare</span>
+</li>
+<li class="cursor-pointer active:bg-primary-container/20 hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed py-3 px-4 ml-1 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+<span class="font-label-bold text-label-bold">What-if Lab</span>
+</li>
+<li class="cursor-pointer active:bg-primary-container/20 hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed py-3 px-4 ml-1 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-bold text-label-bold">Evidence</span>
+</li>
+<li class="cursor-pointer active:bg-primary-container/20 hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed py-3 px-4 ml-1 flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+<span class="font-label-bold text-label-bold">Model &amp; Validation</span>
+</li>
+</ul>
+</div>
+<!-- Bottom utility area -->
+<div class="px-md">
+<div class="flex items-center gap-3 py-2 cursor-pointer text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-bold text-label-bold">Settings</span>
+</div>
+<div class="flex items-center gap-3 py-2 mt-2 border-t border-outline-variant pt-4">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-label-bold text-label-bold">JD</div>
+<div class="flex flex-col">
+<span class="font-label-bold text-label-bold text-on-background">Dr. J. Doe</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lead Researcher</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-64 flex flex-col min-w-0">
+<!-- TopAppBar Component -->
+<header class="bg-white dark:bg-surface-container-lowest w-full h-14 border-b border-outline-variant dark:border-outline fixed top-0 right-0 left-64 z-40 flex items-center justify-between px-lg transition-all duration-200" style="width: calc(100% - 16rem);">
+<div class="flex items-center gap-3 cursor-pointer active:opacity-80 hover:text-primary dark:hover:text-primary-fixed transition-colors text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined" data-icon="microbiology">microbiology</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">Candidate Explorer</h2>
+</div>
+<button class="font-label-bold text-label-bold text-primary dark:text-primary-fixed cursor-pointer active:opacity-80 hover:text-primary dark:hover:text-primary-fixed transition-colors px-4 py-1.5 border border-outline-variant rounded hover:bg-surface-container">
+                Export
+            </button>
+</header>
+<!-- Page Canvas -->
+<main class="mt-14 p-lg flex flex-col gap-xl">
+<!-- Page Header Section -->
+<section class="flex flex-col gap-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-background">Project: AMP Discovery — Drug Resistant Pathogens</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-4xl">
+                    Prioritising active, low-toxicity and non-redundant antimicrobial peptide candidates for experimental testing.
+                </p>
+</section>
+<!-- Context & Stats Bar -->
+<section class="flex items-center justify-between bg-surface-container-lowest border border-outline-variant rounded-lg p-md">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-error-container/20 flex items-center justify-center border border-error-container">
+<span class="material-symbols-outlined text-error text-[20px]">coronavirus</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Target Pathogen</span>
+<span class="font-body-md text-body-md text-on-background font-medium">Acinetobacter baumannii</span>
+</div>
+</div>
+<div class="flex items-center gap-lg border-l border-outline-variant pl-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]">data_array</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Candidate pool: <strong class="text-on-background">1,247 peptides</strong></span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]">experiment</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Testing budget: <strong class="text-on-background">20 candidates</strong></span>
+</div>
+</div>
+</section>
+<!-- Metric Blocks Grid -->
+<section class="grid grid-cols-4 gap-md">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg flex flex-col gap-2 hover:border-primary transition-colors cursor-default">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-bold text-label-bold uppercase tracking-wider">Candidates Analysed</span>
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-background mt-2">1,247</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">arrow_upward</span>
+<span class="text-tertiary font-medium">100%</span> processed
+                    </div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg flex flex-col gap-2 hover:border-primary transition-colors cursor-default">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-bold text-label-bold uppercase tracking-wider">High Activity</span>
+<span class="material-symbols-outlined text-[20px] text-primary">bolt</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary mt-2">186</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                        P(Activity) &gt; 0.85
+                    </div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg flex flex-col gap-2 hover:border-primary transition-colors cursor-default">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-bold text-label-bold uppercase tracking-wider">Low Toxicity</span>
+<span class="material-symbols-outlined text-[20px] text-tertiary">health_and_safety</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-tertiary mt-2">143</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                        P(Toxicity) &lt; 0.15
+                    </div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg flex flex-col gap-2 hover:border-primary transition-colors cursor-default relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+<div class="flex items-center justify-between text-on-surface-variant relative z-10">
+<span class="font-label-bold text-label-bold uppercase tracking-wider">Selected for Testing</span>
+<span class="material-symbols-outlined text-[20px] text-primary">biotech</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-background mt-2 relative z-10">20 <span class="font-headline-sm text-headline-sm text-on-surface-variant">/ 20</span></div>
+<div class="w-full bg-surface-variant h-1.5 rounded-full mt-3 relative z-10 overflow-hidden">
+<div class="bg-primary h-full w-full"></div>
+</div>
+</div>
+</section>
+<!-- Data Table Section -->
+<section class="flex flex-col gap-md">
+<!-- Controls Row -->
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-background">Ranked Candidates</h3>
+<div class="flex items-center gap-3">
+<!-- Search -->
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px] group-focus-within:text-primary transition-colors">search</span>
+<input class="pl-9 pr-4 py-1.5 border border-outline-variant rounded bg-surface-container-lowest font-body-sm text-body-sm text-on-background w-64 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search Peptide ID or Sequence..." type="text"/>
+</div>
+<!-- Filters -->
+<button class="flex items-center gap-2 px-3 py-1.5 border border-outline-variant rounded bg-surface-container-lowest hover:bg-surface-container transition-colors text-on-surface-variant font-label-bold text-label-bold">
+<span class="material-symbols-outlined text-[16px]">filter_list</span>
+                            Filters (3)
+                        </button>
+</div>
+</div>
+<!-- Main Data Table Wrapper -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[1000px]">
+<thead>
+<tr class="bg-surface border-b border-outline-variant">
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface-variant w-16">Rank</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface-variant w-32">Candidate ID</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface-variant">Sequence</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface-variant w-40">P(Activity)</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface-variant w-40">P(Toxicity)</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface-variant w-24">Quality</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface-variant w-24">Diversity</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface-variant w-24">Evidence</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface-variant w-32 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-background divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface transition-colors">
+<td class="py-3 px-4 text-on-surface-variant font-medium">1</td>
+<td class="py-3 px-4 font-medium text-primary">AMP-041-A</td>
+<td class="py-3 px-4">
+<div class="code-container bg-surface-container px-2 py-1 rounded max-w-[200px]">
+<code class="font-code-md text-code-md tracking-wider text-on-surface">KWKLFKKIGIGKFLHSAKKF</code>
+</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="w-10 text-right font-code-md text-code-md">0.94</span>
+<div class="flex-1 h-1.5 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-primary" style="width: 94%"></div></div>
+</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="w-10 text-right font-code-md text-code-md">0.05</span>
+<div class="flex-1 h-1.5 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-tertiary" style="width: 5%"></div></div>
+</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold tracking-wide bg-tertiary-container/10 text-tertiary border border-tertiary/20">HIGH</span>
+</td>
+<td class="py-3 px-4">
+<span class="material-symbols-outlined text-outline text-[20px]" title="Unique Structure">account_tree</span>
+</td>
+<td class="py-3 px-4">
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-primary" title="In Silico"></span>
+<span class="w-2 h-2 rounded-full bg-primary" title="Literature"></span>
+<span class="w-2 h-2 rounded-full bg-surface-variant"></span>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<span class="inline-flex items-center gap-1.5 font-label-bold text-label-bold text-primary">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                                        Selected
+                                    </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface transition-colors">
+<td class="py-3 px-4 text-on-surface-variant font-medium">2</td>
+<td class="py-3 px-4 font-medium text-primary">AMP-192-B</td>
+<td class="py-3 px-4">
+<div class="code-container bg-surface-container px-2 py-1 rounded max-w-[200px]">
+<code class="font-code-md text-code-md tracking-wider text-on-surface">GLFDIVKKVVGALGSL</code>
+</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="w-10 text-right font-code-md text-code-md">0.91</span>
+<div class="flex-1 h-1.5 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-primary" style="width: 91%"></div></div>
+</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="w-10 text-right font-code-md text-code-md">0.08</span>
+<div class="flex-1 h-1.5 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-tertiary" style="width: 8%"></div></div>
+</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold tracking-wide bg-tertiary-container/10 text-tertiary border border-tertiary/20">HIGH</span>
+</td>
+<td class="py-3 px-4">
+<span class="material-symbols-outlined text-outline text-[20px]" title="Analogous">copy_all</span>
+</td>
+<td class="py-3 px-4">
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="w-2 h-2 rounded-full bg-surface-variant"></span>
+<span class="w-2 h-2 rounded-full bg-surface-variant"></span>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<span class="inline-flex items-center gap-1.5 font-label-bold text-label-bold text-primary">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                                        Selected
+                                    </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface transition-colors bg-surface/30">
+<td class="py-3 px-4 text-on-surface-variant font-medium">3</td>
+<td class="py-3 px-4 font-medium text-on-background">AMP-088-C</td>
+<td class="py-3 px-4">
+<div class="code-container bg-surface-container px-2 py-1 rounded max-w-[200px]">
+<code class="font-code-md text-code-md tracking-wider text-on-surface">RGGRLCYCRRRFCVCVGR</code>
+</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="w-10 text-right font-code-md text-code-md">0.88</span>
+<div class="flex-1 h-1.5 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-primary" style="width: 88%"></div></div>
+</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="w-10 text-right font-code-md text-code-md">0.12</span>
+<div class="flex-1 h-1.5 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-tertiary" style="width: 12%"></div></div>
+</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold tracking-wide bg-surface-container-high text-on-surface-variant border border-outline-variant">MED</span>
+</td>
+<td class="py-3 px-4">
+<span class="material-symbols-outlined text-outline text-[20px]">account_tree</span>
+</td>
+<td class="py-3 px-4">
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-colors">Add to batch</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface transition-colors bg-surface/30">
+<td class="py-3 px-4 text-on-surface-variant font-medium">4</td>
+<td class="py-3 px-4 font-medium text-on-background">AMP-314-D</td>
+<td class="py-3 px-4">
+<div class="code-container bg-surface-container px-2 py-1 rounded max-w-[200px]">
+<code class="font-code-md text-code-md tracking-wider text-on-surface">FLPLIGRVLSGIL</code>
+</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="w-10 text-right font-code-md text-code-md">0.85</span>
+<div class="flex-1 h-1.5 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-primary/70" style="width: 85%"></div></div>
+</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="w-10 text-right font-code-md text-code-md text-error">0.45</span>
+<div class="flex-1 h-1.5 bg-surface-variant rounded-full overflow-hidden"><div class="h-full bg-error" style="width: 45%"></div></div>
+</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold tracking-wide bg-error-container/20 text-error border border-error/20">WARN</span>
+</td>
+<td class="py-3 px-4">
+<span class="material-symbols-outlined text-outline text-[20px]">account_tree</span>
+</td>
+<td class="py-3 px-4">
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="w-2 h-2 rounded-full bg-surface-variant"></span>
+<span class="w-2 h-2 rounded-full bg-surface-variant"></span>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-colors">Add to batch</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between text-on-surface-variant mt-2 px-2">
+<span class="font-body-sm text-body-sm">Showing 1 to 4 of 1,247 entries</span>
+<div class="flex gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-primary bg-primary text-white font-label-bold text-label-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container transition-colors font-label-bold text-label-bold">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container transition-colors font-label-bold text-label-bold">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,20 @@
+{
+  "n_train": 231,
+  "n_test": 41,
+  "train_positive_rate": 0.3636,
+  "cv": {
+    "roc_auc": 0.8488,
+    "roc_auc_std": 0.0525,
+    "pr_auc": 0.8096,
+    "pr_auc_std": 0.0442,
+    "folds": 5
+  },
+  "test": {
+    "roc_auc": 0.8492,
+    "pr_auc": 0.7009,
+    "n": 41,
+    "positive_rate": 0.3415
+  },
+  "test_pr_auc_baseline": 0.3415,
+  "caveat": "Trained on 231 sequences. Small-sample metrics: quote the CV standard deviation, never the mean alone."
+}
