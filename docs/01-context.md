@@ -2,7 +2,10 @@
 
 Living project brief. Read fully before responding in a new chat. Companion file: research_findings.md (verified method knowledge, real numbers, references).
 
-Last updated: 29 August 2026, ~00:20 Day 2.
+Last updated: 30 August 2026.
+Changelog: v9 — phases 6-9 complete. Repo is github.com/jabssyyy/amp-companion; data is
+local only and gitignored; no AI-tool attribution anywhere. Read docs/06-build-status.md
+first in a new session — it opens with a handoff block and supersedes this file on facts.
 Changelog: v8 — BUILD COMPLETE through phase 5 plus the React UI. See docs/06-build-status.md
 for measured results; that file supersedes this one wherever they disagree. Three figures in
 this document were corrected during the build: the dual-labeled ceiling is 248 (not ~714),

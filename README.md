@@ -14,6 +14,10 @@ the top scorers wastes that budget on near-duplicates and ignores that toxicity,
 killing, is why active AMPs fail. This tool produces a diverse, selectivity-aware shortlist
 instead.
 
+> **Starting fresh?** Read **`docs/06-build-status.md`** first. It opens with a handoff
+> block covering current state, how to run it, the repository rules, and the two claims
+> that must be phrased precisely. It is the source of truth where any doc disagrees.
+
 ---
 
 ## Run it

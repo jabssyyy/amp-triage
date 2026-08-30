@@ -3,8 +3,7 @@
 Execution guide for the engine track. Read context.md first for locked decisions; research_findings.md for numbers and math. This file is the phased what-to-build-next.
 
 Last updated: 29 August 2026, ~00:30 Day 2.
-STATUS: phases 0-8 COMPLETE (6 and 8 by the engine track, 7 by the product track and reviewed).
-Phase 9 is with the product track. Phase 10 is designed and will not land — full design in docs/07-system-design.md. Measured results live in docs/06-build-status.md.
+STATUS: phases 0-9 COMPLETE and reviewed. Phase 10 is designed and did not land — full design in docs/07-system-design.md. Measured results live in docs/06-build-status.md.
 This file is kept as the record of what was planned and how it changed on contact with the
 data — the phase headings below carry their outcome inline.
 Owner: Sir Jabin + build partner (this pair). Data pair runs parallel on labeling and QC.

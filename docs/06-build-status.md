@@ -1,16 +1,64 @@
 # Build Status — what actually exists
 
-Last updated: 29 August 2026, ~02:00 Day 2.
-This is the single source of truth for what is built, measured, and verified. Where an
-earlier document states something different, this file wins.
+Last updated: 30 August 2026.
+**This is the single source of truth. Where any other document disagrees, this one wins.**
+
+---
+
+## Picking this up in a new session — read this first
+
+**What it is.** PharmaMind: an AI research assistant for antimicrobial drug discovery. It
+ranks candidate antimicrobial peptides against WHO-priority drug-resistant pathogens, then
+selects a diverse, safety-aware batch that fits a fixed testing budget. Built for Tech
+Sangamam 2026.
+
+**State: phases 0-9 are complete and verified.** Engine, validation, API, React UI,
+database, authentication, campaigns, institutional memory, and calibration analytics all
+work. What is missing is the pitch.
+
+**Run it — two terminals:**
+
+    cd src && python -m uvicorn api:app --port 8000
+    cd frontend && npm run dev            # http://localhost:5173
+
+**Verify nothing is broken — these are the contract, keep them green:**
+
+    python src/verify_phase0.py     # 34 checks
+    python src/verify_phase23.py    # 24 checks
+
+**Demo logins** (from `python src/seed.py`):
+`elena.rostova@amr-unit.org` / `ElenaDemo2026!` (lead), plus `marcus.chen@` and
+`priya.patel@` with the same pattern.
+
+### Repository rules — these are firm
+
+- Live repo: **github.com/jabssyyy/amp-companion**, one commit, author `preethijeevan`.
+- **No AI-tool attribution anywhere.** No co-author trailers, no tool names in code,
+  comments, commit messages or docs. The two parallel workstreams are referred to as the
+  *engine track* and the *product track*.
+- **`data/` is local only and gitignored.** It stays on disk (61 MB) and never goes to the
+  public repo — the source databases belong to DBAASP and DRAMP. `NOTICE.md` credits them;
+  `docs/08-data-setup.md` explains how to rebuild from the originals.
+- An older repo, `github.com/jabssyyy/amp-triage`, still exists and still contains the data
+  and the original trailers. **It needs deleting from the GitHub account.**
+
+### The one claim to get right
+
+Do **not** say the tool finds more hits than a top-N sort. Measured across five species and
+three seeds, raw hit count is a wash. What holds up is *coverage*: top-N reached exactly one
+chemotype in all fifteen runs, greedy never lost a run. Say **"the same number of hits spread
+across four scaffolds instead of one"** — four independent leads for the same money.
+
+Equally: the model does **not** "learn" from wet-lab results. With 20-100 outcomes you can
+recalibrate and you can exclude. You cannot retrain ESM2 or move an XGBoost classifier
+trained on 845 sequences.
 
 ---
 
 ## Summary
 
-Phases 0 through 5 are complete and verified. The React UI is built and has been run in a
-real browser against live data. What remains is the pitch, and a Streamlit fallback that
-was deliberately skipped.
+Phases 0 through 9 are complete and verified. What remains is the pitch, and a Streamlit
+fallback that was deliberately skipped.
 
 | Area | State |
 |---|---|
@@ -24,7 +72,7 @@ was deliberately skipped.
 | Phase 6 — persistence, run history | complete |
 | Phase 7 — auth, labs, campaigns | complete, reviewed |
 | Phase 8 — experiments, lab memory | complete |
-| Phase 9 — calibration, trends | the product track, in progress |
+| Phase 9 — calibration, trends | complete, reviewed |
 | Pitch / slides | **not started** |
 | Streamlit fallback (`src/app.py`) | **stub, deliberately skipped** |
 
@@ -205,3 +253,71 @@ Removed at the user's request: the "Research-support tool. Not a medical decisio
 sidebar line and intro sentence, and the "Where this sits against existing tools"
 positioning card. The positioning argument still lives in `docs/01-context.md` for the
 pitch; it is simply no longer printed in the product.
+
+
+---
+
+## Phase 9 — calibration and trends (complete, reviewed)
+
+`GET /analytics` and an Analytics screen. Reviewed against the honesty rule that mattered:
+**a calibration bucket with fewer than three results returns `observed_hit_rate: null`, not
+a number.** Verified live — buckets with n=2 and n=1 return null, n=3 returns a rate. Two
+experiments is not a hit rate, and a chart that pretends otherwise is the fastest way to
+lose a judge.
+
+Also returns hit rate per round, cumulative chemotype coverage using the same clustering as
+the validation screen (cosine, average linkage, threshold 0.10), and property distributions
+of hits against misses. Seeded records are separated from real ones by `experiment.source`.
+
+## Current inventory
+
+| | |
+|---|---|
+| API endpoints | 11 science + 20 platform across `src/routes/` |
+| UI screens | Overview, Shortlist, Run History, Candidate, Compare, What-if Lab, Evidence, Relationships, Calibration & Trends, Model & Validation, Login, Campaigns |
+| Database tables | 11, schema frozen in `src/models_db.py` |
+| Verification | 58 checks across two suites, all passing |
+| Repo | 136 files, 8.3 MB, one commit |
+
+## Where each thing lives
+
+    src/config.py        locked thresholds, each with its justification
+    src/peptides.py      parsing, units, sequence filtering, leakage-safe splitting
+    src/select.py        the log-det greedy engine — VERIFIED, do not change signatures
+    src/score.py         P(active), P(toxic) for one sequence
+    src/scientist.py     wheel, properties, PubMed evidence, graph, structures
+    src/validate.py      hidden-actives recovery benchmark
+    src/audit_validation.py  independent re-check of that benchmark
+    src/models_db.py     the frozen 11-table schema
+    src/routes/          auth, projects, runs, experiments, analytics
+    frontend/src/pages/  one file per screen
+    frontend/src/store.tsx   shared state: species, pool, shortlist, tray, auth, lab memory
+
+## What is left
+
+1. **The pitch.** No slides, no rehearsed narrative. This is the entire remaining gap and
+   it is the thing being judged. `docs/01-context.md` holds the framing and the positioning
+   argument; `docs/06-build-status.md` holds every number.
+2. **Delete the old `amp-triage` repo.** It still carries the data and the original commit
+   trailers.
+3. **Streamlit fallback.** `src/app.py` is a stub. Skipped knowingly — the React app is
+   verified working and the hour was judged better spent on the pitch. If React fails at the
+   venue there is no fallback.
+4. **Phase 10 (model recalibration from results)** is designed in `docs/07-system-design.md`
+   and was never started. Present it as designed, not done.
+
+Stretch goals never started, logged as stretch from the beginning: per-residue toxicity
+attribution (Expected Gradients) and log-MIC regression for the data-rich species.
+
+## Demo script that actually works
+
+The strongest sequence, verified end to end:
+
+1. **Shortlist** — drag θ and watch the table re-rank. Proves the diversity term is real.
+2. **Candidate** — helical wheel and 3D structure with its tier and confidence labelled.
+3. **What-if Lab** — edit a residue, watch it re-score in ~40 ms and change rank.
+4. **Record a result** on the current rank-1 peptide, then re-run the shortlist. It
+   disappears, and the panel says why. This is the institutional-memory moment and it needs
+   no pre-seeded state.
+5. **Model & Validation** — close on the chemotype numbers and the *A. baumannii*
+   low-confidence badge. Volunteering the weak model is the strongest move available.
