@@ -12,9 +12,14 @@ ranks candidate antimicrobial peptides against WHO-priority drug-resistant patho
 selects a diverse, safety-aware batch that fits a fixed testing budget. Built for Tech
 Sangamam 2026.
 
-**State: phases 0-9 are complete and verified.** Engine, validation, API, React UI,
-database, authentication, campaigns, institutional memory, and calibration analytics all
-work. What is missing is the pitch.
+**The hackathon is over.** Tech Sangamam 2026 finished with this project placing **4th of
+78**, plus a special award. Phases 0-9 are complete and verified: engine, validation, API,
+React UI, database, authentication, campaigns, institutional memory, and calibration
+analytics all work. The pitch was delivered.
+
+**The project continues past the hackathon.** Nothing here is on a deadline any more, so
+treat the time-pressure language in `docs/03-plan.md` and `docs/07-system-design.md` as a
+historical record of how it was built, not as instructions.
 
 **Run it — two terminals:**
 
@@ -57,8 +62,8 @@ trained on 845 sequences.
 
 ## Summary
 
-Phases 0 through 9 are complete and verified. What remains is the pitch, and a Streamlit
-fallback that was deliberately skipped.
+Phases 0 through 9 are complete and verified. The hackathon is finished; the project is
+being kept for continued use.
 
 | Area | State |
 |---|---|
@@ -73,7 +78,7 @@ fallback that was deliberately skipped.
 | Phase 7 — auth, labs, campaigns | complete, reviewed |
 | Phase 8 — experiments, lab memory | complete |
 | Phase 9 — calibration, trends | complete, reviewed |
-| Pitch / slides | **not started** |
+| Pitch | delivered — hackathon complete, 4th of 78 |
 | Streamlit fallback (`src/app.py`) | **stub, deliberately skipped** |
 
 ---
@@ -295,16 +300,23 @@ of hits against misses. Seeded records are separated from real ones by `experime
 
 ## What is left
 
-1. **The pitch.** No slides, no rehearsed narrative. This is the entire remaining gap and
-   it is the thing being judged. `docs/01-context.md` holds the framing and the positioning
-   argument; `docs/06-build-status.md` holds every number.
-2. **Delete the old `amp-triage` repo.** It still carries the data and the original commit
-   trailers.
-3. **Streamlit fallback.** `src/app.py` is a stub. Skipped knowingly — the React app is
-   verified working and the hour was judged better spent on the pitch. If React fails at the
-   venue there is no fallback.
-4. **Phase 10 (model recalibration from results)** is designed in `docs/07-system-design.md`
-   and was never started. Present it as designed, not done.
+The hackathon is complete, so none of this is urgent. In rough order of value if the
+project is taken further:
+
+1. **Delete the old `amp-triage` repo.** Still public, still carries the data and the
+   original commit trailers. Only the account owner can remove it.
+2. **The two data-limited models.** *A. baumannii* sits at CV ROC-AUC 0.586 ± 0.112 on 90
+   training sequences — barely above chance. Toxicity rests on 231. Both are limited by
+   labelled data, not by method, so more peptides would move them and more modelling would
+   not. This is the first thing worth fixing for real use.
+3. **Streamlit fallback.** `src/app.py` is still a stub. Cheap insurance before demoing on
+   an unfamiliar machine.
+4. **Phase 10 (per-project recalibration from wet-lab results)** is designed in
+   `docs/07-system-design.md` and was never started.
+
+**The genuinely reusable piece is `src/select.py`.** Diversity-aware batch selection under a
+budget is not AMP-specific — it applies to any screening problem where testing costs money
+and candidates cluster. That module does not know it is about peptides.
 
 Stretch goals never started, logged as stretch from the beginning: per-residue toxicity
 attribution (Expected Gradients) and log-MIC regression for the data-rich species.

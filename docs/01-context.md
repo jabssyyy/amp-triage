@@ -3,6 +3,9 @@
 Living project brief. Read fully before responding in a new chat. Companion file: research_findings.md (verified method knowledge, real numbers, references).
 
 Last updated: 30 August 2026.
+Changelog: v10 — HACKATHON COMPLETE. Placed 4th of 78 at Tech Sangamam 2026 with a
+special award; pitch delivered. The project continues past the event. Checkpoint and
+round language below is historical.
 Changelog: v9 — phases 6-9 complete. Repo is github.com/jabssyyy/amp-companion; data is
 local only and gitignored; no AI-tool attribution anywhere. Read docs/06-build-status.md
 first in a new session — it opens with a handoff block and supersedes this file on facts.

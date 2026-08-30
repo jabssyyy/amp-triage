@@ -1,5 +1,10 @@
 # Build Plan — Tech Sangamam 2026 (AMP / PharmaMind)
 
+> **Historical record.** Written during the 24-hour build and kept as-is. The
+> deadlines, checkpoints and stop rules below describe the conditions at the time;
+> the hackathon is over. For current state see `docs/06-build-status.md`.
+
+
 Execution guide for the engine track. Read context.md first for locked decisions; research_findings.md for numbers and math. This file is the phased what-to-build-next.
 
 Last updated: 29 August 2026, ~00:30 Day 2.

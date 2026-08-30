@@ -1,5 +1,10 @@
 # System Design — from tool to platform (phases 6–10)
 
+> **Historical record.** Written during the 24-hour build and kept as-is. The
+> deadlines, checkpoints and stop rules below describe the conditions at the time;
+> the hackathon is over. For current state see `docs/06-build-status.md`.
+
+
 Written 29 August 2026, ~00:30 Day 2, after judge feedback on the prototype asking for a
 backend database and a scientist login system.
 

@@ -1,6 +1,11 @@
 # Handoff — contracts and rules
 
-STATUS (29 Aug 2026): phases 4 and 5 are COMPLETE, and the React UI is built. This file is
+STATUS (30 Aug 2026): all phases 0-9 are COMPLETE and the hackathon is over. This file
+is kept as the standing contracts reference — the endpoint shapes, the file-ownership
+boundaries and the rules below still hold for anyone extending the code. Phase-assignment
+and deadline language is historical.
+
+Earlier status (29 Aug): phases 4 and 5 are COMPLETE, and the React UI is built. This file is
 now the reference for anyone extending the code — the contracts, the endpoint shapes and the
 rules below all still hold. Measured results are in `docs/06-build-status.md`.
 
