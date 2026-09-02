@@ -2,7 +2,11 @@
 
 Living project brief. Read fully before responding in a new chat. Companion file: research_findings.md (verified method knowledge, real numbers, references).
 
-Last updated: 30 August 2026.
+Last updated: 2 September 2026.
+Changelog: v11 — the live repo is now **github.com/jabssyyy/amp-triage**. The previous
+repo, github.com/jabssyyy/amp-companion, is being retired; the v9 entry below still names
+it and is out of date on that one point. Authorship is consolidated under the single
+contributor `jabssyyy`; no AI-tool attribution anywhere, `data/` local only and gitignored.
 Changelog: v10 — HACKATHON COMPLETE. Placed 4th of 78 at Tech Sangamam 2026 with a
 special award; pitch delivered. The project continues past the event. Checkpoint and
 round language below is historical.

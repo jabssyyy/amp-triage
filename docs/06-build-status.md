@@ -1,6 +1,6 @@
 # Build Status — what actually exists
 
-Last updated: 30 August 2026.
+Last updated: 2 September 2026.
 **This is the single source of truth. Where any other document disagrees, this one wins.**
 
 ---
@@ -37,15 +37,16 @@ historical record of how it was built, not as instructions.
 
 ### Repository rules — these are firm
 
-- Live repo: **github.com/jabssyyy/amp-companion**, one commit, author `preethijeevan`.
+- Live repo: **github.com/jabssyyy/amp-triage**, sole author and contributor `jabssyyy`.
 - **No AI-tool attribution anywhere.** No co-author trailers, no tool names in code,
   comments, commit messages or docs. The two parallel workstreams are referred to as the
   *engine track* and the *product track*.
 - **`data/` is local only and gitignored.** It stays on disk (61 MB) and never goes to the
   public repo — the source databases belong to DBAASP and DRAMP. `NOTICE.md` credits them;
   `docs/08-data-setup.md` explains how to rebuild from the originals.
-- An older repo, `github.com/jabssyyy/amp-triage`, still exists and still contains the data
-  and the original trailers. **It needs deleting from the GitHub account.**
+- The earlier repo `github.com/jabssyyy/amp-companion` is being retired and replaced by
+  `amp-triage`, which was recreated empty so it carries none of the old history, data or
+  commit trailers.
 
 ### The one claim to get right
 
@@ -282,7 +283,7 @@ of hits against misses. Seeded records are separated from real ones by `experime
 | UI screens | Overview, Shortlist, Run History, Candidate, Compare, What-if Lab, Evidence, Relationships, Calibration & Trends, Model & Validation, Login, Campaigns |
 | Database tables | 11, schema frozen in `src/models_db.py` |
 | Verification | 58 checks across two suites, all passing |
-| Repo | 136 files, 8.3 MB, one commit |
+| Repo | 136 files, 8.3 MB |
 
 ## Where each thing lives
 
@@ -303,15 +304,13 @@ of hits against misses. Seeded records are separated from real ones by `experime
 The hackathon is complete, so none of this is urgent. In rough order of value if the
 project is taken further:
 
-1. **Delete the old `amp-triage` repo.** Still public, still carries the data and the
-   original commit trailers. Only the account owner can remove it.
-2. **The two data-limited models.** *A. baumannii* sits at CV ROC-AUC 0.586 ± 0.112 on 90
+1. **The two data-limited models.** *A. baumannii* sits at CV ROC-AUC 0.586 ± 0.112 on 90
    training sequences — barely above chance. Toxicity rests on 231. Both are limited by
    labelled data, not by method, so more peptides would move them and more modelling would
    not. This is the first thing worth fixing for real use.
-3. **Streamlit fallback.** `src/app.py` is still a stub. Cheap insurance before demoing on
+2. **Streamlit fallback.** `src/app.py` is still a stub. Cheap insurance before demoing on
    an unfamiliar machine.
-4. **Phase 10 (per-project recalibration from wet-lab results)** is designed in
+3. **Phase 10 (per-project recalibration from wet-lab results)** is designed in
    `docs/07-system-design.md` and was never started.
 
 **The genuinely reusable piece is `src/select.py`.** Diversity-aware batch selection under a
