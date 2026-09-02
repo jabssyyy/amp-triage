@@ -3,14 +3,13 @@
 Living project brief. Read fully before responding in a new chat. Companion file: research_findings.md (verified method knowledge, real numbers, references).
 
 Last updated: 2 September 2026.
-Changelog: v11 — the live repo is now **github.com/jabssyyy/amp-triage**. The previous
-repo, github.com/jabssyyy/amp-companion, is being retired; the v9 entry below still names
-it and is out of date on that one point. Authorship is consolidated under the single
-contributor `jabssyyy`; no AI-tool attribution anywhere, `data/` local only and gitignored.
+Changelog: v11 — the live repo is **github.com/jabssyyy/amp-triage**, recreated empty and
+pushed fresh. Authorship is consolidated under the single contributor `jabssyyy`; no
+AI-tool attribution anywhere, `data/` local only and gitignored.
 Changelog: v10 — HACKATHON COMPLETE. Placed 4th of 78 at Tech Sangamam 2026 with a
 special award; pitch delivered. The project continues past the event. Checkpoint and
 round language below is historical.
-Changelog: v9 — phases 6-9 complete. Repo is github.com/jabssyyy/amp-companion; data is
+Changelog: v9 — phases 6-9 complete. Repo is github.com/jabssyyy/amp-triage; data is
 local only and gitignored; no AI-tool attribution anywhere. Read docs/06-build-status.md
 first in a new session — it opens with a handoff block and supersedes this file on facts.
 Changelog: v8 — BUILD COMPLETE through phase 5 plus the React UI. See docs/06-build-status.md

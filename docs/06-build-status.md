@@ -44,9 +44,8 @@ historical record of how it was built, not as instructions.
 - **`data/` is local only and gitignored.** It stays on disk (61 MB) and never goes to the
   public repo — the source databases belong to DBAASP and DRAMP. `NOTICE.md` credits them;
   `docs/08-data-setup.md` explains how to rebuild from the originals.
-- The earlier repo `github.com/jabssyyy/amp-companion` is being retired and replaced by
-  `amp-triage`, which was recreated empty so it carries none of the old history, data or
-  commit trailers.
+- `amp-triage` was recreated empty and pushed fresh, so it carries no history, data or
+  commit trailers from any earlier repo. Every commit is authored `jabssyyy`.
 
 ### The one claim to get right
 
