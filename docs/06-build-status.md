@@ -41,9 +41,13 @@ historical record of how it was built, not as instructions.
 - **No AI-tool attribution anywhere.** No co-author trailers, no tool names in code,
   comments, commit messages or docs. The two parallel workstreams are referred to as the
   *engine track* and the *product track*.
-- **`data/` is local only and gitignored.** It stays on disk (61 MB) and never goes to the
-  public repo — the source databases belong to DBAASP and DRAMP. `NOTICE.md` credits them;
-  `docs/08-data-setup.md` explains how to rebuild from the originals.
+- **`data/` is committed** (changed 18 October 2026, so collaborators can run the project
+  without sourcing the databases themselves). DBAASP permits redistribution with
+  acknowledgement and DRAMP is CC-BY; `NOTICE.md` carries the attribution that makes this
+  permitted, so keep it accurate. Excluded from the commit: `data/.jwt_secret` and
+  `data/pharmamind.db*`, which are per-install secrets and real accounts, and
+  `embeddings.npz`, the `*_normalized.pkl` intermediates and `data/structures/`, which
+  regenerate.
 - `amp-triage` was recreated empty and pushed fresh, so it carries no history, data or
   commit trailers from any earlier repo. Every commit is authored `jabssyyy`.
 

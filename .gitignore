@@ -25,16 +25,16 @@ reports/*.txt
 # --- original download archives, kept locally only ---
 archive/
 
+# --- secrets and per-install state, never committed -------------------------
+# JWT signing key: generated per install, publishing it forges any login
+data/.jwt_secret
+# the running database holds real accounts and bcrypt hashes; seed your own
+# with python src/seed.py
+data/*.db-shm
+data/*.db-wal
+
 # --- os / editor ---
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
-data/*.db-shm
-data/*.db-wal
-data/.jwt_secret
-
-# --- third-party datasets, not redistributed ---------------------------------
-# Source databases and everything derived from them. See docs/08-data-setup.md
-# to rebuild: python src/make_labels.py && python src/embed.py
-data/

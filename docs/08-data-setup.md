@@ -1,12 +1,14 @@
 # Data setup
 
-The source databases are not redistributed in this repository. They belong to DBAASP and
-DRAMP (see `NOTICE.md`), they are large, and mirroring someone else's dataset is not part
-of what this project built. Everything below rebuilds from the originals in a few minutes.
+The source data ships with the repository under `data/`, so a fresh clone needs only step
+3 below. It belongs to DBAASP and DRAMP and is redistributed under their terms — credit
+them, not this repository, and keep `NOTICE.md` intact.
+
+Step 1 is only for rebuilding from scratch or refreshing against a newer release.
 
 ## 1. Download the sources
 
-Place these under `data/raw/`:
+Already present under `data/raw/`; re-download only to refresh:
 
 | File | Source |
 |---|---|
@@ -19,8 +21,8 @@ table is the one holding MIC and MBC by target species.
 
 ## 2. Clean into the processed tables
 
-The cleaning step produces one row per measurement, preserving the experimental detail the
-labelling rules depend on:
+Already done and committed. The cleaning step produces one row per measurement, preserving
+the experimental detail the labelling rules depend on:
 
     data/processed/peptide_master.csv                 one row per unique sequence
     data/processed/dbaasp_activity_experimental.csv   MIC/MBC by target species
@@ -31,10 +33,17 @@ labelling rules depend on:
 
 Each needs a `normalized_sequence` column: the sequence trimmed and upper-cased.
 
-## 3. Build labels, embeddings and models
+## 3. Build embeddings — required after a fresh clone
+
+`data/processed/embeddings.npz` is 28 MB and regenerates, so it is not committed. Nothing
+scores without it:
+
+    python src/embed.py           # ESM2 embeddings, ~75 s, writes embeddings.npz
+
+The labels in `data/labels/` and the classifiers in `models/` are committed, so these two
+only need running if you change the labelling rules or the training data:
 
     python src/make_labels.py     # labels + the blocking class-balance gate
-    python src/embed.py           # ESM2 embeddings, ~75 s, writes embeddings.npz
     python src/train_activity.py  # five per-species activity classifiers
     python src/train_toxicity.py  # human-erythrocyte toxicity classifier
 

@@ -37,9 +37,13 @@ First-time setup:
     pip install -r requirements.txt
     cd frontend && npm install
 
-The source databases are not redistributed here — they belong to DBAASP and DRAMP (see
-`NOTICE.md`). **`docs/08-data-setup.md` explains how to fetch them and rebuild the labels,
-embeddings and models.** Budget a few minutes; the embedding step takes about 75 seconds.
+The source data is included under `data/`, redistributed with attribution under the DBAASP
+and DRAMP terms — see `NOTICE.md`, and cite them rather than this repository. Two things
+are not committed because they rebuild in about 75 seconds:
+
+    python src/embed.py           # writes data/processed/embeddings.npz
+
+`docs/08-data-setup.md` covers the full rebuild and the four rules it must respect.
 
 ---
 
@@ -66,7 +70,7 @@ diversity". Regularised with +I so monotonicity and submodularity hold unconditi
     models/          trained classifiers
     reports/         metrics, validation output, UI screenshots
     design/template/ the design source the UI was built from
-    data/            NOT in the repository — see docs/08-data-setup.md
+    data/            source databases, labels and processed tables
 
 ### src
 
