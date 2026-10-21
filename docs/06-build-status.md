@@ -37,7 +37,8 @@ historical record of how it was built, not as instructions.
 
 ### Repository rules — these are firm
 
-- Live repo: **github.com/jabssyyy/amp-triage**, sole author and contributor `jabssyyy`.
+- Live repo: **github.com/jabssyyy/amp-triage**, private, sole author and contributor
+  `jabssyyy`.
 - **No AI-tool attribution anywhere.** No co-author trailers, no tool names in code,
   comments, commit messages or docs. The two parallel workstreams are referred to as the
   *engine track* and the *product track*.
@@ -48,8 +49,8 @@ historical record of how it was built, not as instructions.
   `data/pharmamind.db*`, which are per-install secrets and real accounts, and
   `embeddings.npz`, the `*_normalized.pkl` intermediates and `data/structures/`, which
   regenerate.
-- `amp-triage` was recreated empty and pushed fresh, so it carries no history, data or
-  commit trailers from any earlier repo. Every commit is authored `jabssyyy`.
+- `amp-triage` was recreated empty and pushed fresh, so it carries no history or commit
+  trailers from any earlier repo. Every commit is authored `jabssyyy`.
 
 ### The one claim to get right
 

@@ -176,7 +176,7 @@ The data pair cleaned the raw files into experimental tables, preserving one row
 Sequence matches (exact, after trim + uppercase; no fuzzy matching):
 - DRAMP and DBAASP-activity = 803 sequences.
 - DRAMP and DBAASP-lysis = 441 sequences.
-- Activity and lysis overlap approx 714 (dual-labeled set) — the ceiling for any selectivity / therapeutic-window work. Small; confirms selectivity is data-limited.
+- Activity and lysis overlap approx 714 (dual-labeled set) — the ceiling for any selectivity / therapeutic-window work. Small; confirms selectivity is data-limited. **Corrected during the build: the usable figure is 248, not 714 — see the corrections section below.**
 
 Traps and rules recorded:
 - has_dramp_toxicity_annotation does NOT mean toxic. It only signals a non-empty DRAMP annotation, which may literally say "no information found." Never use it as a toxic/safe label.

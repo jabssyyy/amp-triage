@@ -92,17 +92,20 @@ diversity". Regularised with +I so monotonicity and submodularity hold unconditi
 
 ## Documentation
 
-Read in order:
+Start with these two:
+
+- **`docs/handoff.md`** — setup from a fresh clone, API contracts, the rules that matter
+- **`docs/06-build-status.md`** — what actually exists and what it measured. Where any
+  other document disagrees with this one, this one wins.
+
+Then, for background, in order:
 
 1. `docs/01-context.md` — project brief, locked decisions, how we got here
 2. `docs/02-research-findings.md` — verified numbers, method maths, references
-3. `docs/03-plan.md` — the phased build plan
-4. **`docs/handoff.md`** — start here: setup from a fresh clone, API contracts, the rules
-5. `docs/05-dataset-report.md` — original schema inspection
-6. **`docs/06-build-status.md`** — what actually exists and what it measured. Where any
-   other document disagrees with this one, this one wins.
-7. `docs/07-system-design.md` — the multi-user platform design
-8. `docs/08-data-setup.md` — how to obtain the source data and rebuild everything
+3. `docs/03-plan.md` — the phased build plan (historical)
+4. `docs/05-dataset-report.md` — original schema inspection
+5. `docs/07-system-design.md` — the multi-user platform design (historical)
+6. `docs/08-data-setup.md` — rebuilding the data from the original databases
 
 ---
 

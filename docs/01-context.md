@@ -1,8 +1,14 @@
 # Project Context — Tech Sangamam 2026 (AMR / AMP Triage)
 
-Living project brief. Read fully before responding in a new chat. Companion file: research_findings.md (verified method knowledge, real numbers, references).
+Living project brief. Read fully before responding in a new chat. Companion file:
+`docs/02-research-findings.md` (verified method knowledge, real numbers, references).
 
-Last updated: 2 September 2026.
+Last updated: 21 October 2026.
+Changelog: v12 — **`data/` is now committed**, reversing the rule in v9 and v11 below:
+DBAASP permits redistribution with acknowledgement and DRAMP is CC-BY, and the repo is
+private, so collaborators can clone and run without sourcing the databases. `.jwt_secret`,
+`pharmamind.db*` and the regenerable artefacts stay out. The two handoff documents were
+merged into `docs/handoff.md`, now the entry point.
 Changelog: v11 — the live repo is **github.com/jabssyyy/amp-triage**, recreated empty and
 pushed fresh. Authorship is consolidated under the single contributor `jabssyyy`; no
 AI-tool attribution anywhere, `data/` local only and gitignored.
