@@ -14,9 +14,10 @@ the top scorers wastes that budget on near-duplicates and ignores that toxicity,
 killing, is why active AMPs fail. This tool produces a diverse, selectivity-aware shortlist
 instead.
 
-> **Starting fresh?** Read **`docs/06-build-status.md`** first. It opens with a handoff
-> block covering current state, how to run it, the repository rules, and the two claims
-> that must be phrased precisely. It is the source of truth where any doc disagrees.
+> **Starting fresh?** Read **`docs/handoff.md`** first — setup from a fresh clone, the API
+> contracts, the repository rules, and the two claims that must be phrased precisely.
+> **`docs/06-build-status.md`** holds the measured results and is the source of truth where
+> any document disagrees.
 
 ---
 
@@ -96,7 +97,7 @@ Read in order:
 1. `docs/01-context.md` — project brief, locked decisions, how we got here
 2. `docs/02-research-findings.md` — verified numbers, method maths, references
 3. `docs/03-plan.md` — the phased build plan
-4. `docs/04-handoff.md` — contracts and rules for anyone extending the code
+4. **`docs/handoff.md`** — start here: setup from a fresh clone, API contracts, the rules
 5. `docs/05-dataset-report.md` — original schema inspection
 6. **`docs/06-build-status.md`** — what actually exists and what it measured. Where any
    other document disagrees with this one, this one wins.
