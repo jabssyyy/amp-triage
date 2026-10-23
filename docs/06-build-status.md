@@ -33,22 +33,27 @@ historical record of how it was built, not as instructions.
 
 **Demo logins** (from `python src/seed.py`):
 `elena.rostova@amr-unit.org` / `ElenaDemo2026!` (lead), plus `marcus.chen@` and
-`priya.patel@` with the same pattern.
+`priya.patel@` with the same pattern. Intentionally public — also one-click buttons on the
+login screen. Anyone reaching a deployment can sign in as a lead and write to it, so strip
+them before a deployment holds anything real.
 
 ### Repository rules — these are firm
 
-- Live repo: **github.com/jabssyyy/amp-triage**, private, sole author and contributor
-  `jabssyyy`.
+- Live repo: **github.com/jabssyyy/amp-triage**, public, sole author and contributor
+  `jabssyyy`. Deployed at **https://nebula.viewdns.net/pharmamind**.
 - **No AI-tool attribution anywhere.** No co-author trailers, no tool names in code,
   comments, commit messages or docs. The two parallel workstreams are referred to as the
   *engine track* and the *product track*.
-- **`data/` is committed** (changed 18 October 2026, so collaborators can run the project
-  without sourcing the databases themselves). DBAASP permits redistribution with
-  acknowledgement and DRAMP is CC-BY; `NOTICE.md` carries the attribution that makes this
-  permitted, so keep it accurate. Excluded from the commit: `data/.jwt_secret` and
-  `data/pharmamind.db*`, which are per-install secrets and real accounts, and
-  `embeddings.npz`, the `*_normalized.pkl` intermediates and `data/structures/`, which
-  regenerate.
+- **`data/` is local only and gitignored.** It stays on disk (61 MB) and is rebuilt from the
+  originals — the source databases belong to DBAASP and DRAMP. `NOTICE.md` credits them;
+  `docs/08-data-setup.md` explains the rebuild. It was committed between 18 and 23 October
+  2026, while the repo was private, so collaborators could get the deployment running; that
+  done, it is out again. **It remains in git history at commit `4eb63c2`** — licensing
+  permits that (DBAASP allows redistribution with acknowledgement, DRAMP is CC-BY), so it
+  was left rather than rewriting history and breaking existing clones.
+- **`data/.jwt_secret` and `data/pharmamind.db*` have never been committed and must not be.**
+  A published JWT signing key lets anyone forge a login; the database holds real accounts
+  and bcrypt hashes.
 - `amp-triage` was recreated empty and pushed fresh, so it carries no history or commit
   trailers from any earlier repo. Every commit is authored `jabssyyy`.
 

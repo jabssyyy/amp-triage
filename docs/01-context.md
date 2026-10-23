@@ -3,12 +3,14 @@
 Living project brief. Read fully before responding in a new chat. Companion file:
 `docs/02-research-findings.md` (verified method knowledge, real numbers, references).
 
-Last updated: 21 October 2026.
-Changelog: v12 — **`data/` is now committed**, reversing the rule in v9 and v11 below:
-DBAASP permits redistribution with acknowledgement and DRAMP is CC-BY, and the repo is
-private, so collaborators can clone and run without sourcing the databases. `.jwt_secret`,
-`pharmamind.db*` and the regenerable artefacts stay out. The two handoff documents were
-merged into `docs/handoff.md`, now the entry point.
+Last updated: 23 October 2026.
+Changelog: v13 — **deployed** at https://nebula.viewdns.net/pharmamind and the repo is
+**public**. `data/` is out of the repository again, restoring the v9/v11 rule; it remains in
+history at commit `4eb63c2`, which licensing permits. Demo credentials are intentionally
+public and must be stripped before any deployment holds real lab data.
+Changelog: v12 — `data/` was committed between 18 and 23 October 2026 while the repo was
+private, so collaborators could get the deployment running. Superseded by v13 above. The two
+handoff documents were merged into `docs/handoff.md`, now the entry point.
 Changelog: v11 — the live repo is **github.com/jabssyyy/amp-triage**, recreated empty and
 pushed fresh. Authorship is consolidated under the single contributor `jabssyyy`; no
 AI-tool attribution anywhere, `data/` local only and gitignored.

@@ -53,27 +53,41 @@ That module does not know it is about peptides.
 
 ## Setting up a fresh clone
 
+A deployed instance runs at **https://nebula.viewdns.net/pharmamind**, so you only need a
+local setup to develop against.
+
     git clone https://github.com/jabssyyy/amp-triage.git
     cd amp-triage
     pip install -r requirements.txt
     cd frontend && npm install && cd ..
 
-Then two steps that are **not** in the repository and must be run locally:
+**`data/` is not in the repository**, so a fresh clone cannot score anything until you
+rebuild it. `docs/08-data-setup.md` is the full procedure: download the three source files
+from DBAASP and DRAMP into `data/raw/`, clean them into `data/processed/`, then
 
-    python src/embed.py     # ESM2 embeddings, ~75 s, writes data/processed/embeddings.npz
-    python src/seed.py      # your own database, lab and demo logins
+    python src/make_labels.py   # labels + the blocking class-balance gate
+    python src/embed.py         # ESM2 embeddings, ~75 s, writes embeddings.npz
+    python src/train_activity.py && python src/train_toxicity.py
+    python src/seed.py          # your own database, lab and demo logins
 
-`embeddings.npz` is 28 MB and regenerates, so it is not committed — but nothing scores
-without it. `src/seed.py` creates your own SQLite database and JWT signing key; neither is
-shared, because a published signing key lets anyone forge a login.
+`src/seed.py` creates your own SQLite database and JWT signing key. Neither is shared —
+a published signing key lets anyone forge a login.
 
 Run it, two terminals:
 
     cd src && python -m uvicorn api:app --port 8000
     cd frontend && npm run dev            # http://localhost:5173
 
-Demo logins printed by `seed.py`: `elena.rostova@amr-unit.org` / `ElenaDemo2026!` (lead),
-plus `marcus.chen@` and `priya.patel@` on the same pattern.
+Demo logins, created and printed by `python src/seed.py`: `elena.rostova@amr-unit.org` /
+`ElenaDemo2026!` (lead), plus `marcus.chen@` and `priya.patel@` on the same pattern. These
+are intentionally public — they are hardcoded in `src/seed.py` and wired into
+`frontend/src/pages/Login.tsx` as one-click demo buttons, so the demo is reproducible by
+anyone.
+
+**That is fine for a demo and not fine for real data.** Anyone who can reach a deployment
+can sign in as a lead and write to it. If a deployment ever holds real lab results, remove
+the quick-login buttons, drop the seeded accounts (`experiment.source` marks seeded records)
+and issue real credentials.
 
 **Verify before and after any change — these are the contract, keep them green:**
 
@@ -86,18 +100,18 @@ If either fails, stop and fix that before continuing.
 
 ## Repository rules
 
-- Repo: **github.com/jabssyyy/amp-triage**, private, sole author `jabssyyy`.
+- Repo: **github.com/jabssyyy/amp-triage**, public, sole author `jabssyyy`. Deployed at
+  https://nebula.viewdns.net/pharmamind.
 - **No AI-tool attribution anywhere** — no co-author trailers, no tool names in code,
   comments, commit messages or docs. The two original workstreams are referred to as the
   *engine track* and the *product track*.
-- **`data/` is committed** (changed 18 October 2026, so collaborators can run the project
-  without sourcing the databases themselves). DBAASP permits redistribution with
-  acknowledgement and DRAMP is CC-BY. `NOTICE.md` carries the attribution that makes this
-  permitted — keep it accurate, and cite the original databases rather than this repository.
-- **Never commit** `data/.jwt_secret` or `data/pharmamind.db*`. The first is a per-install
-  signing key, the second holds real accounts and bcrypt password hashes. Also excluded
-  because they regenerate: `embeddings.npz`, the `*_normalized.pkl` intermediates and the
-  cached PDB files in `data/structures/`.
+- **`data/` is local only and not committed.** It was briefly committed while the repo was
+  private (18–23 October 2026) so collaborators could get the deployment running; with that
+  done and the repo public, it is out again. `docs/08-data-setup.md` rebuilds it from the
+  originals, and `NOTICE.md` credits DBAASP and DRAMP — cite them, not this repository.
+- **`data/.jwt_secret` and `data/pharmamind.db*` must never be committed** under any
+  relaxation of the rule above. The first is a per-install JWT signing key: publishing it
+  lets anyone forge a login. The second holds real accounts and bcrypt password hashes.
 
 ## Two claims that must stay precisely worded
 

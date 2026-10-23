@@ -9,29 +9,20 @@ node_modules/
 frontend/dist/
 frontend/test-results/
 
-# --- large regenerable artefacts -------------------------------------------
-# embeddings.npz is 28 MB and rebuilds in ~75 s: python src/embed.py
-data/processed/embeddings.npz
-# intermediate pickles from the data pair's cleaning step; the CSVs are the source of truth
-data/processed/*_normalized.pkl
-# cached PDB downloads, refetched on demand
-data/structures/
-
-# --- runtime state ---
-data/*.db
-data/*.sqlite3
+# --- runtime state and logs ---
 reports/*.txt
 
 # --- original download archives, kept locally only ---
 archive/
 
-# --- secrets and per-install state, never committed -------------------------
-# JWT signing key: generated per install, publishing it forges any login
-data/.jwt_secret
-# the running database holds real accounts and bcrypt hashes; seed your own
-# with python src/seed.py
-data/*.db-shm
-data/*.db-wal
+# --- data: local only ---------------------------------------------------------
+# Nothing under data/ is committed. It stays on disk (61 MB) and is rebuilt from
+# the original DBAASP and DRAMP downloads — see docs/08-data-setup.md.
+#
+# Two items in here must never be committed even if this rule is relaxed again:
+#   data/.jwt_secret   per-install JWT signing key; publishing it forges any login
+#   data/pharmamind.db real accounts and bcrypt password hashes
+data/
 
 # --- os / editor ---
 .DS_Store

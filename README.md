@@ -1,5 +1,7 @@
 # PharmaMind — AMP Triage
 
+**Live:** https://nebula.viewdns.net/pharmamind
+
 **Tech Sangamam 2026.** An AI research assistant for antimicrobial drug discovery. It ranks
 candidate compounds against drug-resistant pathogens, grounds every prediction in published
 evidence, surfaces similar known compounds, and lets researchers explore what-if
@@ -38,13 +40,10 @@ First-time setup:
     pip install -r requirements.txt
     cd frontend && npm install
 
-The source data is included under `data/`, redistributed with attribution under the DBAASP
-and DRAMP terms — see `NOTICE.md`, and cite them rather than this repository. Two things
-are not committed because they rebuild in about 75 seconds:
-
-    python src/embed.py           # writes data/processed/embeddings.npz
-
-`docs/08-data-setup.md` covers the full rebuild and the four rules it must respect.
+The source databases are not in this repository. They belong to DBAASP and DRAMP (see
+`NOTICE.md`), and mirroring someone else's dataset is not part of what this project built.
+**`docs/08-data-setup.md` explains how to fetch them and rebuild the labels, embeddings and
+models.** Budget a few minutes; the embedding step takes about 75 seconds.
 
 ---
 
@@ -71,7 +70,7 @@ diversity". Regularised with +I so monotonicity and submodularity hold unconditi
     models/          trained classifiers
     reports/         metrics, validation output, UI screenshots
     design/template/ the design source the UI was built from
-    data/            source databases, labels and processed tables
+    data/            NOT in the repository — see docs/08-data-setup.md
 
 ### src
 
